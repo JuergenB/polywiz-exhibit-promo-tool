@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arts Promotion & Funding — Master Resource</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --line:#2a2f3a;
+    --ink:#e8eaf0; --muted:#9aa3b2; --accent:#7c9cff; --accent2:#ffcc66;
+    --green:#3fbf7f; --amber:#e8b04b; --red:#e8716b;
+    --oc:#5b8def; --ss:#a07bff; --media:#ff8a5b; --partner:#34c3a3; --fund:#3fbf7f; --ads:#e76fb0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:1400px;margin:0 auto;padding:28px 22px 60px}
+  header h1{font-size:26px;margin:0 0 4px;letter-spacing:-.02em}
+  header p.sub{color:var(--muted);margin:0 0 4px}
+  .meta{color:var(--muted);font-size:13px;margin-top:8px}
+  .excl-link{color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+  .excl-link:hover{opacity:.8}
+  .excl-overlay{position:fixed;inset:0;background:rgba(5,7,11,.7);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+  .excl-overlay.open{display:flex}
+  .excl-modal{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;max-width:620px;width:100%;max-height:82vh;overflow:auto;padding:22px 24px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .excl-modal h3{margin:0 40px 4px 0;font-size:17px}
+  .excl-modal .excl-sub{color:var(--muted);font-size:13px;margin:0 0 14px}
+  .excl-modal .excl-item{border-left:3px solid var(--amber);background:rgba(232,176,75,.07);padding:9px 13px;border-radius:0 8px 8px 0;margin-bottom:10px;font-size:13px;line-height:1.5}
+  .excl-modal .excl-item strong{color:var(--ink)}
+  .excl-close{position:absolute;top:16px;right:16px;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1;z-index:2}
+  .excl-close:hover{border-color:var(--accent)}
+  .intro-context{display:flex;gap:18px;align-items:stretch;margin-top:18px;background:linear-gradient(180deg,#1a1f2b,#15181f);border:1px solid var(--line);border-radius:14px;padding:16px}
+  @media(max-width:760px){.intro-context{flex-direction:column}}
+  .deck-card{position:relative;flex:0 0 280px;max-width:280px;border-radius:10px;overflow:hidden;cursor:pointer;border:1px solid var(--line);background:#0b0d12;transition:.15s}
+  .deck-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .deck-card img{display:block;width:100%;height:auto}
+  .deck-card .deck-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(15,17,21,.78);border:1px solid rgba(255,255,255,.35);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;padding-left:4px}
+  .deck-card .deck-cap{position:absolute;bottom:0;left:0;right:0;background:rgba(10,12,18,.82);color:var(--ink);font-size:12px;font-weight:600;text-align:center;padding:6px}
+  .intro-text{flex:1;min-width:0}
+  .intro-text .intro-h{margin:0 0 6px;font-size:16px}
+  .intro-text p{margin:0 0 8px;color:#c7cdd9;font-size:13.5px;line-height:1.6}
+  .intro-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:4px}
+  .intro-links a{color:var(--accent);text-decoration:none;font-size:13.5px;font-weight:600}
+  .intro-links a:hover{text-decoration:underline}
+  .modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(5,7,11,.86);backdrop-filter:blur(3px);flex-direction:column}
+  .modal.open{display:flex}
+  .modal-bar{display:flex;align-items:center;gap:14px;padding:12px 18px;background:#11151d;border-bottom:1px solid var(--line)}
+  .modal-title{font-weight:600;font-size:14px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .modal-ext{color:var(--accent);text-decoration:none;font-size:13px;white-space:nowrap}
+  .modal-ext:hover{text-decoration:underline}
+  .modal-close{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:13px;cursor:pointer;white-space:nowrap}
+  .modal-close:hover{border-color:var(--accent)}
+  #deckFrame{flex:1;width:100%;border:none;background:#fff}
+  .callout{background:linear-gradient(180deg,#1b2433,#171a21);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:20px 0}
+  .callout h2{margin:0 0 4px;font-size:18px}
+  .callout .lead{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{display:block;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-decoration:none;color:var(--ink);min-width:200px;flex:1 1 230px;max-width:320px;transition:.15s}
+  .chip:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .chip .n{font-weight:600;font-size:14px}
+  .chip .d{color:var(--muted);font-size:12px;margin-top:2px}
+  .chip .tags{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:10.5px;padding:2px 7px;border-radius:20px;background:#222838;color:var(--muted);border:1px solid var(--line)}
+  .tag.free{background:rgba(63,191,127,.15);color:var(--green);border-color:rgba(63,191,127,.3)}
+  .tag.instant{background:rgba(124,156,255,.15);color:var(--accent);border-color:rgba(124,156,255,.3)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:900px){.two-col{grid-template-columns:1fr}}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:22px 0 12px}
+  .controls input[type=text]{background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:9px 12px;min-width:220px;font-size:14px}
+  .controls select{background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:9px 10px;font-size:13.5px}
+  .toggle{display:inline-flex;align-items:center;gap:6px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:13.5px;cursor:pointer;user-select:none}
+  .toggle input{accent-color:var(--accent)}
+  .btn{background:var(--accent);color:#0f1115;border:none;border-radius:9px;padding:9px 14px;font-weight:600;font-size:13.5px;cursor:pointer}
+  .btn.alt{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .count{color:var(--muted);font-size:13px;margin-left:auto}
+  .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+  table{border-collapse:collapse;width:100%;font-size:13px;min-width:1100px}
+  thead th{position:sticky;top:0;background:#11151d;color:var(--muted);text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;font-weight:600}
+  thead th:hover{color:var(--ink)}
+  thead th .ar{opacity:.5;font-size:10px;margin-left:4px}
+  tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:#1b1f29}
+  td.name{font-weight:600;min-width:150px}
+  td.what{color:var(--muted);min-width:200px;max-width:280px}
+  td.notes{color:var(--muted);min-width:220px;max-width:320px;font-size:12px}
+  td.howto{color:var(--muted);min-width:240px;max-width:340px;font-size:12px;line-height:1.45}
+  td.howto.empty{color:#444;font-style:italic}
+  a.act{color:var(--accent);text-decoration:none;word-break:break-word}
+  a.act:hover{text-decoration:underline}
+  a.src{color:var(--muted);font-size:11px;text-decoration:none}
+  a.src:hover{color:var(--ink)}
+  .ws{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+  .ws.OpenCall{background:rgba(91,141,239,.16);color:#8fb0ff}
+  .ws.Submission{background:rgba(160,123,255,.16);color:#bca6ff}
+  .ws.Media{background:rgba(255,138,91,.16);color:#ffb08e}
+  .ws.Partner{background:rgba(52,195,163,.16);color:#5fdcc0}
+  .ws.Fund{background:rgba(63,191,127,.16);color:#74dba6}
+  .ws.Ads{background:rgba(231,111,176,.16);color:#f29acb}
+  .pill{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11.5px;font-weight:600;white-space:nowrap}
+  /* let long cost descriptions wrap instead of stretching the column */
+  td.cost{min-width:120px;max-width:200px}
+  td.cost .pill{white-space:normal;line-height:1.4;display:inline}
+  /* UTM builder panel */
+  .utm-panel{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:22px 0 4px}
+  .utm-panel h3{margin:0 0 4px;font-size:15px}
+  .utm-panel .utm-sub{color:var(--muted);font-size:13px;margin:0 0 12px}
+  .utm-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .utm-row input[type=text]{flex:1;min-width:280px;background:#0f1115;border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:10px 12px;font-size:14px}
+  .utm-row input[type=text].bad{border-color:#e0688a}
+  .utm-row input.utm-campaign-input{flex:0 1 200px;min-width:160px}
+  .utm-paid-toggle{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none}
+  .utm-paid-toggle input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+  .utm-paid-toggle code{color:var(--ink)}
+  .utm-status{font-size:12.5px;color:var(--muted);margin-top:8px;min-height:16px}
+  .utm-status.ok{color:#7ed3a2}
+  .utm-status.bad{color:#e0688a}
+  .utm-preview{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--accent);word-break:break-all;background:#0f1115;border:1px dashed var(--line);border-radius:8px;padding:8px 10px;margin-top:10px}
+  /* UTM column cell */
+  td.utm{min-width:300px;max-width:380px}
+  td.utm .utm-link{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--accent);word-break:break-all;display:block;margin-bottom:6px}
+  td.utm.muted{color:#555;font-style:italic;font-family:inherit;font-size:12px}
+  .copybtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:4px 10px;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+  .copybtn:hover{border-color:var(--accent)}
+  .copybtn.copied{background:#1f3d2c;border-color:#2e7d50;color:#7ed3a2}
+  .cost-free{color:var(--green)} .cost-confirm{color:var(--amber)} .cost-paid{color:var(--muted)}
+  .self-instant{color:var(--accent)} 
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}
+  .dot.on{background:var(--green)} .dot.off{background:var(--red)}
+  .eff-Low{color:var(--green)} .eff-Medium{color:var(--amber)} .eff-High{color:var(--red)}
+  footer{color:var(--muted);font-size:12px;margin-top:24px;line-height:1.6}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0 0;font-size:12px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Arts Promotion &amp; Funding — Master Resource</h1>
+    <p class="sub">Where to <strong>promote our own open calls &amp; exhibitions</strong> (driving artists to our submission pages), amplify via press/partners, and find funding/donors — verified, US-focused.</p>
+    <p class="sub">Built for Not Real Art / Artsville USA (Arterial / Crewest Studio).</p>
+    <div class="meta"><strong>Scope:</strong> We run our own open calls and already have our own submission platform. This is an <strong>outbound-promotion</strong> resource — every listing channel here lets us post our own call and link artists to <em>our</em> submission URL (notrealart.com / artsvilleusa.com). The test is <strong>own-URL vs. forced infrastructure</strong>, not paid vs. free.</div>
+    <div class="meta">All action URLs visited and verified on <strong>June 12, 2026</strong>, with additional call-listing platforms added &amp; verified <strong>June 18, 2026</strong>. Cost &amp; self-service reflect the <strong>organizer's</strong> action (posting/listing a call), recorded only from what was visible on each page; "confirm" = could not confirm from the page. Default sort puts <strong>Free + Instant self-service + Low effort</strong> at the top.</div>
+
+    <div class="intro-context">
+      <div class="deck-card" id="openDeck" role="button" tabindex="0" aria-label="Open the PressRanger Outreach Engine presentation">
+        <img src="deck-thumb.png" alt="The Outreach We're Not Doing — presentation title slide">
+        <div class="deck-play">▶</div>
+        <div class="deck-cap">Open the concept deck</div>
+      </div>
+      <div class="intro-text">
+        <h2 class="intro-h">The bigger picture</h2>
+        <p>This table is the <strong>demand layer</strong> of a larger plan: an <em>owned promotion &amp; PR engine</em> for our open calls and exhibitions, with PressRanger as one optional input. The full playbook — architecture, pricing analysis, tool comparison, channel mix, and the team proposal — lives in the research folder.</p>
+        <p class="intro-links">
+          <a href="https://github.com/JuergenB/ideas-inbox/tree/main/ideas/011-pressranger-outreach-playbook" target="_blank" rel="noopener">📂 Research &amp; playbook on GitHub →</a>
+          <a href="#" id="openDeckLink">🎬 Open the presentation →</a>
+          <a href="https://pressranger.com/" target="_blank" rel="noopener">🛰️ What is PressRanger? (full site) →</a>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <div class="modal" id="deckModal" aria-hidden="true">
+    <div class="modal-bar">
+      <span class="modal-title">The Outreach We're Not Doing — Concept Deck</span>
+      <a class="modal-ext" id="deckExt" href="https://ideas-inbox-mocha.vercel.app/ideas/011-pressranger-outreach-playbook/exports/pressranger-outreach-engine-light.html" target="_blank" rel="noopener">Open full-screen ↗</a>
+      <button class="modal-close" id="closeDeck" aria-label="Close presentation">✕ Close</button>
+    </div>
+    <iframe id="deckFrame" title="PressRanger Outreach Engine presentation" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"></iframe>
+  </div>
+
+  <div class="two-col">
+    <div class="callout" id="oc-shortlist">
+      <h2>⚡ Quick-Start Shortlist — post every open call here</h2>
+      <p class="lead">Free, self-service places to post each new open call / exhibition that link artists back to <strong>our own submission page</strong>. Start with the top three.</p>
+      <div class="chips" id="ocChips"></div>
+    </div>
+    <div class="callout" id="fund-shortlist">
+      <h2>💰 Fall Campaign — fundraising &amp; grant-discovery</h2>
+      <p class="lead">Free / low-cost destinations to revisit for the fall 2026 donor + grant campaign.</p>
+      <div class="chips" id="fundChips"></div>
+    </div>
+  </div>
+
+  <div class="utm-panel">
+    <h3>🔗 UTM link builder — tag the open call you're promoting</h3>
+    <p class="utm-sub">Paste the page you want artists to land on, name the campaign, and each row's <strong>UTM submit URL</strong> column auto-fills a tagged link. Convention: <code>utm_source</code> = the platform (lowercase), <code>utm_medium</code> = <code>organic</code> (flip to <code>paid</code> below for paid placements), <code>utm_campaign</code> = the campaign name you set. Copy the right link for each platform you post to.</p>
+    <div class="utm-row">
+      <input type="text" id="utmBase" placeholder="https://notrealart.com/exhibitions-schedule/the-art-of-resistance/" autocomplete="off" spellcheck="false">
+      <input type="text" id="utmCampaign" class="utm-campaign-input" placeholder="campaign (e.g. aor-call)" autocomplete="off" spellcheck="false" value="aor-call">
+      <label class="utm-paid-toggle"><input type="checkbox" id="utmPaid"> Paid placement (<code>medium=paid</code>)</label>
+      <button class="btn alt" id="utmClear">Clear</button>
+    </div>
+    <div class="utm-status" id="utmStatus">Tip: paste the landing-page URL (https://…) and set a campaign name. The UTM column appears once a valid URL is entered.</div>
+    <div class="utm-preview" id="utmPreview" style="display:none"></div>
+  </div>
+
+  <div class="controls">
+    <input type="text" id="q" placeholder="Search name, description, notes, how-to…">
+    <select id="fws"><option value="">All workstreams</option></select>
+    <select id="fgeo"><option value="">All geographies</option></select>
+    <label class="toggle"><input type="checkbox" id="ffree"> Free only</label>
+    <label class="toggle"><input type="checkbox" id="finstant"> Instant web form only</label>
+    <button class="btn alt" id="reset">Reset</button>
+    <button class="btn" id="csv">⬇ Download CSV</button>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="legend">
+    <span><span class="ws OpenCall">Open-Call Listing</span></span>
+    <span><span class="ws Media">Media/PR</span></span>
+    <span><span class="ws Partner">Partner/Council</span></span>
+    <span><span class="ws Fund">Fundraising/Grants/Donor</span></span>
+    <span><span class="ws Ads">Paid-Ads</span></span>
+  </div>
+
+  <div class="tablewrap">
+    <table id="tbl">
+      <thead><tr>
+        <th data-k="name">Name<span class="ar"></span></th>
+        <th data-k="ws">Workstream<span class="ar"></span></th>
+        <th data-k="what">What it is</th>
+        <th data-k="url">Action URL (verified)</th>
+        <th data-k="fs">Cost<span class="ar"></span></th>
+        <th data-k="ss">Self-service<span class="ar"></span></th>
+        <th data-k="howto">How to submit a call</th>
+        <th data-k="utm" id="utmHeadCell">UTM submit URL</th>
+        <th data-k="es">Effort<span class="ar"></span></th>
+        <th data-k="audience">Audience / reach</th>
+        <th data-k="geo">Geography</th>
+        <th data-k="bestfor">Best for</th>
+        <th data-k="cadence">Cadence</th>
+        <th data-k="notes">Notes / gotchas</th>
+        <th data-k="date">Verified</th>
+      </tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    <strong>How to read this:</strong> "Free" reflects no listing/posting fee for our use (payment-processing fees on donation platforms are noted in Notes). "Instant web form" = submit immediately with no approval; "Account required" = make an account first; "Manual review" = a human approves before it goes live; "Email/pitch" = no self-serve form, you must pitch a person. Non-US options are flagged under Geography. Every row links to the exact page it was verified on.<br>
+    Total destinations: <span id="total"></span> · Verified <span id="vdate"></span> · <span class="excl-link" id="exclLink" role="button" tabindex="0">Evaluated &amp; excluded resources →</span>
+  </footer>
+
+  <div class="excl-overlay" id="exclModal" role="dialog" aria-modal="true" aria-labelledby="exclTitle">
+    <div class="excl-modal">
+      <button class="excl-close" id="exclClose" aria-label="Close">×</button>
+      <h3 id="exclTitle">Evaluated &amp; excluded</h3>
+      <p class="excl-sub">These were checked against our test — <strong>own-URL vs. forced infrastructure</strong>, not paid vs. free — and left off the list. Re-add any only if we decide to run submissions on their platform.</p>
+      <div class="excl-item"><strong>Submittable</strong> — verified Jun 26, 2026: no organizer option to list a call that links artists to our own form. Its Discover directory requires being a paying Submittable org and routes every applicant through a Submittable-hosted form and account; its &ldquo;External Submissions&rdquo; tool is just a submitter-side tracker.</div>
+      <div class="excl-item"><strong>CaFÉ, ZAPPlication, CuratorSpace, Zealous, ShowSubmit, EntryThingy (paid hosted form)</strong> — excluded for the same reason: their only path makes artists submit inside <em>their</em> system, building <em>their</em> database.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = [{"name":"Art Opportunities Monthly","ws":"Open-Call Listing","what":"Listing platform where organizations POST open calls (grants, juried shows, public art); links out to your own submission URL.","url":"https://artopportunities.org/posts/create","live":true,"cost":"Free","self":"Instant web form","effort":"Low","audience":"Thousands of working artists; site features over 6,900 organizations and 18,000+ total opportunities (Art Opportunities).","geo":"Global","bestfor":"open call, exhibition, grant","cadence":"one-off post","notes":"Free to post your own call and link to your external submission page. No requirement to use their submission system.","howto":"Use the public 'Create Post' web form (no account) — enter call title, deadline, description and your external submission link; it publishes to the feed.","src":"https://artopportunities.org/page/faq","date":"2026-06-12","fs":0,"ss":0,"es":0,"sk":[0,0,0,"art opportunities monthly"],"free":true,"instant":true,"us":"artopportunitiesmonthly"},{"name":"Art3000 (Call for Artists)","ws":"Open-Call Listing","what":"Free art portal where anyone can submit a Call for Artists / Call for Entries with no registration required.","url":"https://www.art-3000.com/call_for_artists/","live":true,"cost":"Free (no registration)","self":"Instant web form","effort":"Low","audience":"Artists browsing Art3000's Call for Artists archive","geo":"US / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"Confirmed free by NOT REAL ART team (Kirsten). Submission is free and requires no account; links to your own submission page. Optional free art gallery for displaying works (needs name/alias + email).","howto":"Go to the 'Submit Call for Artists / Call for Entries' page → fill the public web form (title, deadline, description, your external submission URL) → submit. No registration needed; appears on the Call for Artists archive.","src":"https://www.art-3000.com/call_for_artists/","date":"2026-06-25","fs":0,"ss":0,"es":0,"sk":[0,0,0,"art3000 (call for artists)"],"free":true,"instant":true,"us":"art3000"},{"name":"ArtCallEntry","ws":"Open-Call Listing","what":"Free searchable database + newsletter where organizations advertise their calls for entry, linking out to their own site.","url":"https://artcallentry.com/calls/add","live":true,"cost":"Free (featured placement / email ads paid — contact for rates)","self":"Instant web form","effort":"Low","audience":"Artists browsing ArtCallEntry's database + newsletter subscribers","geo":"US / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"Completely free for art organizations to advertise a call for entry online; links to your external submission URL. Sign up for their newsletter audience too. (Featured placement / email ads are paid — contact for rates.)","howto":"Go to 'Submit a Call (Free)' → fill the 'Add a New Opportunity' form (title, your external website URL, description, contact) → submit → click the confirmation link in the verification email to publish.","src":"https://artcallentry.com/calls/add","date":"2026-06-18","fs":0,"ss":0,"es":0,"sk":[0,0,0,"artcallentry"],"free":true,"instant":true,"us":"artcallentry"},{"name":"ArtDeadline.Com","ws":"Open-Call Listing","what":"Major opportunity directory where arts organizations POST their own open calls; artists click through to your submission URL.","url":"https://artdeadline.com/adc-news/","live":true,"cost":"Free (if artist entry fee ≤ $50) or $10/listing","self":"Instant web form","effort":"Low","audience":"Thousands of artists and art institutions worldwide (ArtDeadline.Com)","geo":"Global","bestfor":"open call, exhibition, grant","cadence":"one-off post","notes":"Free if your call's artist entry fee is $50 or less and not internet-only; otherwise $10. You link out to your own submission page (notrealart.com / artsvilleusa.com). High-impact ad upgrades from $40.","howto":"Submit your call via their listing form (free if artist entry fee ≤ $50). Enter details + your external submission URL; staff posts it to the ADC news feed.","src":"https://artdeadline.com/adc-news/","date":"2026-06-12","fs":0,"ss":0,"es":0,"sk":[0,0,0,"artdeadline.com"],"free":true,"instant":true,"us":"artdeadlinecom"},{"name":"College Art Association (CAA)","ws":"Partner Org/Council","what":"A professional association for the visual arts that provides a platform to post calls for entries, grants, and exhibition opportunities, as well as a separate job board.","url":"https://www.collegeart.org/jobs-and-opportunities/opportunities/submit/","live":true,"cost":"Free (CAA)","self":"Instant web form","effort":"Low","audience":"Thousands of artists, scholars, museum professionals, and educators in the visual arts community (CAA)","geo":"Global (CAA)","bestfor":"open call, exhibition, grant","cadence":"one-off post","notes":"Submitting 'Opportunities' (calls for entries, grants, residencies, etc.) is free via a web form. Employment job listings are separate and require a fee starting at $590 for non-members via the Career Center.","howto":"Members submit via the 'Submit an Opportunity' form — fill in the call details and link to your own application page; CAA publishes it to the Opportunities board.","src":"https://www.collegeart.org/jobs-and-opportunities/opportunities/submit/","date":"2026-06-12","fs":0,"ss":0,"es":0,"sk":[0,0,0,"college art association (caa)"],"free":true,"instant":true,"us":"collegeartassociation"},{"name":"GivingTuesday","ws":"Fundraising/Grants/Donor","what":"A global generosity movement and annual day of giving (the Tuesday after Thanksgiving).","url":"https://www.givingtuesday.org/givingtuesday-toolkit-for-nonprofits/","live":true,"cost":"Free","self":"Instant web form","effort":"Low","audience":"Millions of donors globally; $3.1 billion raised in the US in 2022 (GivingTuesday)","geo":"Global","bestfor":"donor, press, grant","cadence":"recurring roundup","notes":"There is no central registration or master directory for nonprofits; organizations are encouraged to run their own independent campaigns using the provided toolkit and resources. (GivingTuesday FAQ)","howto":"","src":"https://www.givingtuesday.org/about/faq/","date":"2026-06-12","fs":0,"ss":0,"es":0,"sk":[0,0,0,"givingtuesday"],"free":true,"instant":true,"us":"givingtuesday"},{"name":"InLiquid","ws":"Partner Org/Council","what":"A nonprofit organization that provides resources and exhibition opportunities for artists and the arts community in Philadelphia.","url":"https://airtable.com/shr71MjNIYSvdudC6","live":true,"cost":"Free","self":"Instant web form","effort":"Low","audience":"Approx. 120+ artists per event and 2,000+ residents at certain locations; reaches the Philadelphia arts community (InLiquid).","geo":"US region/state (Philadelphia, PA)","bestfor":"open call, exhibition, grant, press","cadence":"one-off post","notes":"Submissions are for posting opportunities like exhibitions, grants, and residencies on InLiquid's platform. The submission is done via an Airtable form and likely undergoes manual review before being posted. (InLiquid Opportunities)","howto":"Complete InLiquid's Airtable intake form with your open-call details and external submission URL; the team reviews and posts it.","src":"https://airtable.com/shr71MjNIYSvdudC6","date":"2026-06-12","fs":0,"ss":0,"es":0,"sk":[0,0,0,"inliquid"],"free":true,"instant":true,"us":"inliquid"},{"name":"OpenCall.ca","ws":"Open-Call Listing","what":"Curated, continuously-updated index of art grants, open calls, exhibitions and residencies worldwide; community-submitted.","url":"https://opencall.ca/","live":true,"cost":"Free (community contribution; optional donation)","self":"Instant web form","effort":"Low","audience":"Artists browsing OpenCall.ca's curated global opportunity index","geo":"Canada / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"Canadian-based but features international opportunities. No account needed; listing reviewed before going live and links to your official URL. Has a Donate button but no posting fee.","howto":"Click '+ SUBMIT' in the header → fill the 'Submit an Opportunity' form (Title, Organisation, Type, Deadline, Official URL = your submission page) → 'Submit for Review' → appears live after curation.","src":"https://opencall.ca/","date":"2026-06-25","fs":0,"ss":0,"es":0,"sk":[0,0,0,"opencall.ca"],"free":true,"instant":true,"us":"opencallca"},{"name":"Mid-America Arts Alliance (M-AAA)","ws":"Fundraising/Grants/Donor","what":"A regional arts organization that provides grants, programs, and exhibitions to support the arts in a six-state region.","url":"https://maaa.tfaforms.net/4988526","live":true,"cost":"Free","self":"Instant web form","effort":"Medium","audience":"Artists and arts organizations across a six-state US region (AR, KS, MO, NE, OK, TX); over $2 million in funding provided since 2012 (Mid-America Arts Alliance).","geo":"US region (AR, KS, MO, NE, OK, TX)","bestfor":"grant, open call","cadence":"always-on","notes":"Grant applications require 501(c)(3) status, a Unique Entity Identifier (UEI) from SAM.gov, and often a dollar-for-dollar match (Mid-America Arts Alliance). Regional Touring Program applications are rolling within the fiscal year.","howto":"","src":"https://www.maaa.org/for-organizations/regional-touring-program/","date":"2026-06-12","fs":0,"ss":0,"es":1,"sk":[0,0,1,"mid-america arts alliance (m-aaa)"],"free":true,"instant":true,"us":"midamericaartsalliance"},{"name":"All About Photo","ws":"Open-Call Listing","what":"Photography portal where organizations POST photo contests/open calls; links out to your own submission URL (photo-focused).","url":"https://www.all-about-photo.com/link-back.php","live":true,"cost":"Free (reciprocal backlink required)","self":"Account required","effort":"Low","audience":"Thousands of photography lovers and experts (estimate from site)","geo":"Global","bestfor":"open call, exhibition, press","cadence":"one-off post","notes":"Free if you add a reciprocal backlink. Photo-focused audience. Links to your own submission page.","howto":"Register, add a reciprocal backlink to All About Photo on your site, then submit your photo call via your account; links out to your submission page.","src":"https://www.all-about-photo.com/link-back.php","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"all about photo"],"free":true,"instant":false,"us":"allaboutphoto"},{"name":"ArtCall.org","ws":"Open-Call Listing","what":"Lets organizations POST a free promotional open-call listing that links out to your own submission website.","url":"https://artcall.org/calls/add","live":true,"cost":"Free (promotional listing)","self":"Account required","effort":"Low","audience":"250,000+ registered artists (ArtCall Overview)","geo":"US National","bestfor":"open call, exhibition","cadence":"one-off post","notes":"Free promotional (advertising) listing links out to your own submission site (physical-display calls). ArtCall.org also sells paid jurying software (you don't need it) and has partnered with ArtCallEntry.com where you can ALSO list for free. Account required to post.","howto":"Create a free account → 'Add Your Call' → choose the free promotional (advertising) listing → enter details and your external submission URL (skip their paid jurying software).","src":"https://artcall.org/calls/add","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"artcall.org"],"free":true,"instant":false,"us":"artcallorg"},{"name":"ArtRabbit","ws":"Open-Call Listing","what":"International art platform where organizations POST open calls; listings link directly to your own submission URL.","url":"https://www.artrabbit.com/artist-opportunities","live":true,"cost":"Free (fee-free calls, ~5/week) / £100 standard / free w/ Premium £99/yr","self":"Approval/review (form)","effort":"Low","audience":"70,000+ professional users and students; 23,500 weekly newsletter subscribers (ArtRabbit) (ArtRabbit)","geo":"Global","bestfor":"open call","cadence":"one-off post","notes":"Verified org-perspective: ArtRabbit subsidizes free listings for calls with NO artist entry fee (about 5/week). Listings link out to YOUR opportunity URL — no submission lock-in. Curated via a Google Form. UK/Europe-leaning audience.","howto":"Submit your call through ArtRabbit's Google Form. Fee-free calls can get a free listing (~5/week); listing links out to your opportunity URL after review.","src":"https://www.artrabbit.com/about/community-guidelines","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"artrabbit"],"free":true,"instant":false,"us":"artrabbit"},{"name":"Artsy","ws":"Media/PR Amplifier","what":"Artsy's editorial pitch and press contact page for partners and contributors to submit story ideas and news.","url":"https://www.artsy.net/contact","live":true,"cost":"Free","self":"Email/pitch required","effort":"Low","audience":"3.4 million+ monthly collectors and enthusiasts (Source: Artsy About Page)","geo":"Global","bestfor":"press, editorial","cadence":"always-on","notes":"Pitches should be sent to pitches@artsy.net. The site emphasizes original, timely narratives with high-quality images. Editorial coverage is a mix of in-house reporting and freelancer/partner pitches.","howto":"","src":"","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"artsy"],"free":true,"instant":false,"us":"artsy"},{"name":"CallFor.org","ws":"Open-Call Listing","what":"Long-running art open-calls platform (awards, exhibitions, residencies, competitions) with paid listings and a free tier for unfunded artist-run initiatives.","url":"https://www.callfor.org/upload-call/","live":true,"cost":"From 45€ standard (60€ / 75€ upgrades); FREE for artist-run/unfunded orgs via refundable 20€ deposit","self":"Approval/review","effort":"Low","audience":"International artist audience browsing CallFor.org","geo":"Netherlands / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"Based in NL; non-EU posts exclude 21% VAT. Upload form has an 'Open call Website address' field so artists go to YOUR page. The free tier requires you to be artist-run with NO funding/sponsors (20€ deposit refunded minus small transaction fee). Reviewed & posted in 1–2 working days.","howto":"General Menu → Standard Upload → choose European or Non-European → fill the form (header, content, deadline, your website URL) → submit → pay via card/PayPal (or deposit for free tier) → staff reviews and posts within 1–2 days.","src":"https://www.callfor.org/upload-call/","date":"2026-06-25","fs":0,"ss":1,"es":0,"sk":[0,1,0,"callfor.org"],"free":true,"instant":false,"us":"callfororg"},{"name":"DAFgiving360 (formerly Schwab Charitable)","ws":"Fundraising/Grants/Donor","what":"The nonprofit resources and information page for one of the largest US donor-advised fund (DAF) sponsors (formerly Schwab Charitable), providing tools like DAF Direct and fundraising guidance for organizations to engage with DAF donors.","url":"https://www.dafgiving360.org/charities","live":true,"cost":"Free (DAF Direct)","self":"Email/pitch required","effort":"Low","audience":"165,000+ charities supported in 2025; $9.9 billion granted in 2025 (DAFgiving360)","geo":"US national (DAFgiving360)","bestfor":"donor, grant","cadence":"always-on","notes":"Schwab Charitable has rebranded to DAFgiving360. There is no dedicated self-service portal for nonprofits; organizations are primarily identified via IRS records and Guidestar/Candid profiles. Nonprofits can implement the DAF Direct widget to facilitate grants from donors (DAFgiving360). For information updates or EFT inquiries, nonprofits must contact Donor Services directly (DAFgiving360 Privacy). Also add the free DAF Direct donation widget (dafdirect.org) to your site so DAF donors can give directly.","howto":"","src":"https://www.dafdirect.org/","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"dafgiving360 (formerly schwab charitable)"],"free":true,"instant":false,"us":"dafgiving360"},{"name":"EntryThingy (free call listing)","ws":"Open-Call Listing","what":"Submission-management platform that ALSO offers a free path to list a call created elsewhere, linking to your own submission page.","url":"https://app.entrythingy.com/artist/calls/addition/","live":true,"cost":"Free (for the listing-only path)","self":"Approval/review","effort":"Low","audience":"Artists browsing EntryThingy's aggregated call lists","geo":"US / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"Use ONLY the 'add a call already created elsewhere' form — it links to YOUR submission page and is free. Do NOT buy their paid jurying system since you have your own platform.","howto":"Open the 'Add a Call for Entry' form → enter title, organization, email, description, deadline, start date and the 'Link to your Call for Entry Page' (your external URL) → submit for review → publishes to their call lists.","src":"https://app.entrythingy.com/artist/calls/addition/","date":"2026-06-18","fs":0,"ss":1,"es":0,"sk":[0,1,0,"entrythingy (free call listing)"],"free":true,"instant":false,"us":"entrythingy"},{"name":"Fractured Atlas Artist Opportunity Database","ws":"Partner Org/Council","what":"A searchable database of artist grants, funders, awards, and open calls curated by Fractured Atlas.","url":"https://fracturedatlas.notion.site/14b23f9f3dc880289f29d38d63204aaf","live":true,"cost":"Free","self":"Manual review/approval","effort":"Low","audience":"Largest association of artists in the U.S. (reaches tens of thousands of US-based artists across all disciplines)","geo":"Global","bestfor":"open call, grant, exhibition, donor","cadence":"one-off post","notes":"Submissions are reviewed before being added to the database; recommends submitting at least 8 weeks before the deadline.","howto":"Submit your opportunity via their intake form; staff manually reviews and adds it to the public Notion opportunity database, linking to your page.","src":"https://blog.fracturedatlas.org/introducing-the-artist-opportunity-database","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"fractured atlas artist opportunity database"],"free":true,"instant":false,"us":"fracturedatlasartistopportunitydatabase"},{"name":"Givebutter","ws":"Fundraising/Grants/Donor","what":"All-in-one fundraising platform for nonprofits to create campaigns, collect donations, and manage donors.","url":"https://givebutter.com/signup","live":true,"cost":"Free (0% platform fee with donor tips enabled; 3% platform fee if tips disabled) plus standard processing fees (2.9% + $0.30) (Givebutter Pricing)","self":"Account required","effort":"Low","audience":"10,000,000+ changemakers (donors and organizers) (Givebutter)","geo":"US national","bestfor":"donor, open call, exhibition, grant, press","cadence":"always-on","notes":"Standard processing fees apply; platform fee is $0 only if donor tips are enabled. Advanced features available via 'Plus' paid plans starting at $29/mo (Givebutter Pricing).","howto":"","src":"https://givebutter.com/signup","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"givebutter"],"free":true,"instant":false,"us":"givebutter"},{"name":"GoFundMe","ws":"Fundraising/Grants/Donor","what":"A global crowdfunding platform that allows individuals and nonprofits to raise money for various causes.","url":"https://www.gofundme.com/create/fundraiser/template/search/draft","live":true,"cost":"Free to start; 2.2% + $0.30 transaction fee per donation for verified charities (GoFundMe Pricing)","self":"Account required","effort":"Low","audience":"Over 200 million people (GoFundMe)","geo":"Global","bestfor":"donor","cadence":"one-off post","notes":"Nonprofits must be verified 501(c)(3) organizations to receive the reduced transaction fee rate; higher volume organizations may use GoFundMe Pro (Classy) (Zeffy)","howto":"","src":"https://www.gofundme.com/c/pricing","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"gofundme"],"free":true,"instant":false,"us":"gofundme"},{"name":"Juxtapoz Art & Culture Magazine","ws":"Media/PR Amplifier","what":"Leading art and culture magazine for contemporary, lowbrow, and street art.","url":"https://www.juxtapoz.com/k2/information/contact-us/","live":true,"cost":"Free","self":"Manual review/approval","effort":"Low","audience":"1.3M+ followers on Instagram (Source), ~65K-250K monthly readers/visits (Similarweb, Media Kit); reaching global art enthusiasts and professionals.","geo":"Global","bestfor":"press, open call, exhibition","cadence":"one-off post","notes":"Submission is via a Jotform on the contact page; select 'Submit Your Work' from the dropdown. Direct email for the CTO is also provided. Magazine lead times are long.","howto":"","src":"","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"juxtapoz art & culture magazine"],"free":true,"instant":false,"us":"juxtapozartandculturemagazine"},{"name":"OpenCall Radar","ws":"Open-Call Listing","what":"Curated aggregator of artist open calls, residencies, grants and prizes that directs artists to external application pages.","url":"https://opencallradar.com/open-calls","live":true,"cost":"confirm (no self-service posting; email to suggest a source)","self":"Email submission","effort":"Low","audience":"Artists browsing OpenCall Radar's curated feed (sourced from 30+ sites)","geo":"Germany / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"No self-service posting portal — it curates from 30+ sources and links artists to external URLs. To get listed, email hello@opencallradar.com to suggest your call as a source. Lower-priority / passive channel.","howto":"No web form. Email hello@opencallradar.com to suggest your open call as a source; their team curates whether to include it (links to your external page).","src":"https://opencallradar.com/open-calls","date":"2026-06-25","fs":0,"ss":1,"es":0,"sk":[0,1,0,"opencall radar"],"free":true,"instant":false,"us":"opencallradar"},{"name":"The Art Guide","ws":"Open-Call Listing","what":"Free online directory of exhibitions, galleries and calls for artists where organizations post their own listings.","url":"https://theartguide.com/register/","live":true,"cost":"Free (paid 'featured'/ad upgrades optional)","self":"Account required","effort":"Low","audience":"Artists browsing The Art Guide's calls-for-artists directory","geo":"US / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"Galleries, museums, art associations and nonprofits may post Exhibition Listings, Calls for Entries and Events at NO charge; listing links to your own submission page. No charge to create an account or post. (Paid featured/ad upgrades optional.)","howto":"Create a free 'Gallery Account' → sign in → in the dashboard click 'Post a new listing' → choose Call for Entries → fill in details and your external submission URL → publishes.","src":"https://theartguide.com/register/","date":"2026-06-18","fs":0,"ss":1,"es":0,"sk":[0,1,0,"the art guide"],"free":true,"instant":false,"us":"artguide"},{"name":"The Art List","ws":"Open-Call Listing","what":"Database where organizations POST contests/juried shows/exhibitions; artists link through to your own submission URL.","url":"https://www.theartlist.com/register","live":true,"cost":"Free (Basic) / paid upgrades from $50","self":"Account required","effort":"Low","audience":"50,000+ members, 25,000+ email subscribers, and 87,000+ social media followers (artists and photographers worldwide)","geo":"Global","bestfor":"open call, exhibition, grant","cadence":"one-off post","notes":"Free basic listing links to your own submission page. Paid upgrades ($50+) for featured placement. No submission lock-in.","howto":"Register for a free account → add your call in the dashboard (Basic = free) → enter details + your external submission link. Paid upgrades for featured placement.","src":"https://www.theartlist.com/submit","date":"2026-06-12","fs":0,"ss":1,"es":0,"sk":[0,1,0,"the art list"],"free":true,"instant":false,"us":"theartlist"},{"name":"Artist Communities Alliance (ACA)","ws":"Partner Org/Council","what":"An international association and directory platform for artist residency programs and arts organizations to list open calls, jobs, and residency opportunities.","url":"https://artistcommunities.org/join","live":true,"cost":"Free (Artist Communities Alliance)","self":"Account required","effort":"Medium","audience":"400+ member organizations and programs reaching artists globally (Artist Communities Alliance)","geo":"Global","bestfor":"open call, grant","cadence":"always-on","notes":"Membership is free as of January 2025 but required to list in the directory; requires commitment to the network's shared values and affirmations (Artist Communities Alliance).","howto":"Join/sign in as an organizational member, then post your open call / residency opportunity to the ACA opportunity board linking to your own page.","src":"https://artistcommunities.org/membership","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"artist communities alliance (aca)"],"free":true,"instant":false,"us":"artistcommunitiesalliance"},{"name":"Benevity","ws":"Fundraising/Grants/Donor","what":"A global corporate purpose platform that connects nonprofits with corporate giving, matching, and volunteering programs.","url":"https://causes.benevity.org/causes/user/register","live":true,"cost":"Free to register; 2.9% average platform fee plus merchant fees (<2.5%) (Benevity FAQs, Fee Schedule)","self":"Account required","effort":"Medium","audience":"2 million+ organizations worldwide with over $10 billion in donations processed (Benevity, Press Release)","geo":"Global","bestfor":"donor, grant, press","cadence":"always-on","notes":"Registration requires vetting and documentation (e.g., IRS Determination Letter). Manual check fees apply in North America (greater of $25/7% up to $100); electronic funds transfer is strongly recommended to avoid these (Benevity FAQ).","howto":"","src":"https://benevity.com/nonprofits","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"benevity"],"free":true,"instant":false,"us":"benevity"},{"name":"California Arts Council","ws":"Fundraising/Grants/Donor","what":"State arts agency providing grant funding to California-based arts organizations and individual artists (California Arts Council).","url":"https://calartscouncil.smartsimple.com/","live":true,"cost":"Free","self":"Account required","effort":"Medium","audience":"California arts community (approx. 39M residents, reaching artists and nonprofits statewide) (California Arts Council)","geo":"US region/state (California)","bestfor":"grant","cadence":"recurring roundup","notes":"Requires 501(c)(3) status or fiscal sponsor, a principal place of business in California, and a minimum two-year history of arts programming (California Arts Council FAQ).","howto":"","src":"https://arts.ca.gov/grants/faq/","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"california arts council"],"free":true,"instant":false,"us":"californiaartscouncil"},{"name":"Connectively (formerly HARO)","ws":"Media/PR Amplifier","what":"A platform that connects subject matter experts (sources) with journalists and publishers seeking quotes and insights for their articles.","url":"https://www.connectively.us/sign-up?view=expert","live":true,"cost":"Free ($0 for 3 answers/mo) | Lite $11/mo (billed yearly) | Pro $29/mo (billed yearly) | Business $59/mo (billed yearly) | $6.99 per extra credit","self":"Account required","effort":"Medium","audience":"Reach to millions via 1,000+ top publishers (e.g., Fast Company, Fortune, CNET) with 50,000+ experts enrolled.","geo":"US national / Global","bestfor":"press","cadence":"always-on","notes":"Formerly known as Help A Reporter Out (HARO). The free tier is limited to 3 answers per month; additional submissions require a paid subscription or individual credits. Requires setting up a profile and monitoring keyword alerts.","howto":"","src":"","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"connectively (formerly haro)"],"free":true,"instant":false,"us":"connectively"},{"name":"Creative Capital","ws":"Fundraising/Grants/Donor","what":"National nonprofit supporting individual artists through grants, professional development, and a curated list of artist opportunities.","url":"mailto:connect@creative-capital.org","live":true,"cost":"Free (sponsored listing included with $5,000/yr membership, or via manual email contact)","self":"Email/pitch required","effort":"Medium","audience":"250,000+ artists (per site)","geo":"US national","bestfor":"open call, exhibition, grant, press","cadence":"one-off post","notes":"Submissions for 'Artist Opportunities' are community-driven but require manual email contact or are provided as a benefit of the $5,000/yr Institutional Membership. There is no public-facing instant submission web form.","howto":"","src":"","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"creative capital"],"free":true,"instant":false,"us":"creativecapital"},{"name":"Donorbox","ws":"Fundraising/Grants/Donor","what":"An online fundraising platform that allows nonprofits to create customizable donation forms, crowdfunding campaigns, and peer-to-peer pages (Donorbox).","url":"https://donorbox.org/signup/orgs/new","live":true,"cost":"Free (plus 2.95%-3.95% platform fees) (Donorbox Pricing)","self":"Account required","effort":"Medium","audience":"100,000+ nonprofits worldwide; reaches a global donor base (Donorbox Pricing)","geo":"Global","bestfor":"donor","cadence":"always-on","notes":"Standard plan has no monthly fee but charges platform fees (2.95% - 3.95%); donors can often opt to cover these fees (Donorbox Pricing).","howto":"","src":"https://donorbox.org/pricing","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"donorbox"],"free":true,"instant":false,"us":"donorbox"},{"name":"Every.org","ws":"Fundraising/Grants/Donor","what":"A nonprofit-run fundraising platform that provides free tools for nonprofits to accept donations (cash, stocks, DAFs, crypto) and a discovery network for donors.","url":"https://www.every.org/nonprofits/get-started","live":true,"cost":"Free (0% platform fees; processing fees apply for card/crypto) (Every.org)","self":"Manual review/approval","effort":"Medium","audience":"8,500+ nonprofits and their donor base (Every.org)","geo":"US national (Every.org)","bestfor":"donor","cadence":"always-on","notes":"Requires 501(c)(3) status or fiscal sponsor; admin access approval typically takes ~2 business days (Every.org Support).","howto":"","src":"https://www.every.org/nonprofits/get-started","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"every.org"],"free":true,"instant":false,"us":"everyorg"},{"name":"Fidelity Charitable","ws":"Fundraising/Grants/Donor","what":"The largest donor-advised fund (DAF) sponsor in the US, allowing donors to manage charitable accounts and recommend grants to nonprofits.","url":"https://charitablegift.fidelity.com/public/fc-npo-enrollment/#/dpp","live":true,"cost":"Free","self":"Account required","effort":"Medium","audience":"Nearly 400,000 active donors who recommended $18.3 billion in grants to ~227,000 charities in 2025 (Fidelity Charitable).","geo":"US national","bestfor":"donor","cadence":"always-on","notes":"IRS-qualified 501(c)(3) public charities are typically listed automatically based on IRS data; however, electronic enrollment (EFT) is required to receive grant disbursements and will be mandatory starting July 2026 (GiveChariot).","howto":"","src":"https://www.givechariot.com/resources/insights/your-not-enrolled-for-e-pay-status-is-costing-you-donors","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"fidelity charitable"],"free":true,"instant":false,"us":"fidelitycharitable"},{"name":"Foundation Directory (Candid)","ws":"Fundraising/Grants/Donor","what":"The premier grant prospect research database for identifying foundation and corporate funders.","url":"https://candid.org/pricing/","live":true,"cost":"Free tier available; Premium starts at $1,199/yr for nonprofits; Free for nonprofits <$1M revenue with Gold Seal (Candid) (Spark the Fire)","self":"Account required","effort":"Medium","audience":"Industry-standard database of 240,000+ grantmakers for nonprofit fundraisers (Candid)","geo":"US national, Global","bestfor":"grant, donor","cadence":"always-on","notes":"Merged with GuideStar into \"Candid search\" in Jan 2026; free access requires Gold Seal of Transparency; significant price hike for larger orgs (GlobeNewswire) (LinkedIn)","howto":"","src":"https://candid.org/pricing/","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"foundation directory (candid)"],"free":true,"instant":false,"us":"foundationdirectory"},{"name":"GrantWatch","ws":"Fundraising/Grants/Donor","what":"A leading grant listing directory and search engine for nonprofits, businesses, and individuals to find funding opportunities GrantWatch.","url":"https://www.grantwatch.com/add-a-grant.php","live":true,"cost":"Free","self":"Manual review/approval","effort":"Medium","audience":"Approx. 2.23M grant recipient profiles and 374k funder profiles; reaches a wide audience of nonprofit and small business subscribers GrantWatch.","geo":"US national","bestfor":"grant","cadence":"one-off post","notes":"Submissions are subject to manual verification and approval by the GrantWatch editorial team before being listed GrantWatch. Primarily a database for grant seekers to find funding.","howto":"","src":"https://www.grantwatch.com/add-a-grant.php","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"grantwatch"],"free":true,"instant":false,"us":"grantwatch"},{"name":"Instrumentl","ws":"Fundraising/Grants/Donor","what":"An institutional fundraising platform that combines grant prospecting, tracking, and management into one tool for nonprofits (Instrumentl).","url":"https://www.instrumentl.com/signup","live":true,"cost":"Free (14-day trial), then starts at $299/mo (billed annually) or $349/mo (monthly) (Instrumentl)","self":"Account required","effort":"Medium","audience":"15,000+ grant professionals across 5,500+ nonprofits and consultancy firms (Instrumentl)","geo":"US national (Instrumentl)","bestfor":"grant, donor","cadence":"always-on","notes":"Requires paid membership after 14-day trial; trial does not require a credit card (Instrumentl).","howto":"","src":"https://www.instrumentl.com/pricing","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"instrumentl"],"free":true,"instant":false,"us":"instrumentl"},{"name":"Mightycause","ws":"Fundraising/Grants/Donor","what":"A comprehensive online fundraising and donor management platform for nonprofits (Mightycause).","url":"https://www.mightycause.com/contact/join-mightycause","live":true,"cost":"Free ($0/month subscription) plus transaction fees (~1.99% + $0.30) (Mightycause Pricing)","self":"Account required","effort":"Medium","audience":"76,000+ nonprofits and millions of donors nationwide (Mightycause)","geo":"US national","bestfor":"donor, grant","cadence":"always-on","notes":"Requires EIN for nonprofit verification; transaction fees can be covered by donors or the organization (Mightycause Support).","howto":"","src":"https://www.mightycause.com/pricing","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"mightycause"],"free":true,"instant":false,"us":"mightycause"},{"name":"PayPal Giving Fund","ws":"Fundraising/Grants/Donor","what":"A platform that allows 501(c)(3) charities to receive donations from PayPal and its partners like eBay and GoFundMe without transaction fees.","url":"https://www.paypal.com/us/paypal-giving-fund/joinppgf","live":true,"cost":"Free (No fee for enrollment or services; 100% of donations made on PayPal platforms are passed to charities) (PayPal).","self":"Manual review/approval (Submission is reviewed within 3-5 business days) (PayPal).","effort":"Medium (Requires PayPal Business account, charity status verification, and bank linking) (PayPal).","audience":"Millions of potential donors across PayPal, eBay, GoFundMe, and other partner platforms (PayPal).","geo":"US national","bestfor":"donor, grant","cadence":"always-on","notes":"California-based charities must complete an additional enrollment form. Payouts are faster for enrolled charities; non-enrolled charities may wait up to 90 days (PayPal).","howto":"","src":"https://www.paypal.com/us/paypal-giving-fund/policies/nonprofit-user-agreement#license","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"paypal giving fund"],"free":true,"instant":false,"us":"paypalgivingfund"},{"name":"Qwoted","ws":"Media/PR Amplifier","what":"A network that connects PR professionals and expert sources (such as nonprofit leaders) with journalists seeking information for stories.","url":"https://app.qwoted.com/users/sign_up","live":true,"cost":"Free (Basic) | $149/mo (Pro) (Qwoted Pricing)","self":"Account required","effort":"Medium","audience":"\"Tens of thousands of media professionals\" including journalists from the Wall Street Journal, New York Times, and Reuters (Qwoted).","geo":"Global","bestfor":"press","cadence":"always-on","notes":"The free Basic plan is limited to 2 pitches per month and includes a 2-hour response delay on media opportunities (Qwoted Pricing). Press release distribution is available through the platform after account creation (Qwoted Help Center).","howto":"","src":"https://www.qwoted.com/pricing-2/","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"qwoted"],"free":true,"instant":false,"us":"qwoted"},{"name":"South Arts","ws":"Fundraising/Grants/Donor","what":"A Regional Arts Organization (RAO) that provides funding, advocacy, and resources to the arts sector in the Southeastern United States.","url":"https://southarts.my.site.com/grants/s/","live":true,"cost":"Free","self":"Account required","effort":"Medium","audience":"Arts organizations and artists across Alabama, Florida, Georgia, Kentucky, Louisiana, Mississippi, North Carolina, South Carolina, and Tennessee.","geo":"US region (AL, FL, GA, KY, LA, MS, NC, SC, TN)","bestfor":"grant","cadence":"always-on","notes":"Requires account creation in Salesforce portal. Requires Unique Entity Identifier (UEI). Specific grants have budget caps (e.g., $500k for Professional Development). Regional restriction to 9 Southeast states. Many grants require a dollar-for-dollar cash match.","howto":"","src":"https://www.southarts.org/grants-opportunities/professional-development-grants-arts-organizations","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"south arts"],"free":true,"instant":false,"us":"southarts"},{"name":"The Art Newspaper","ws":"Media/PR Amplifier","what":"A leading international publication covering news, analysis, and reviews in the art world.","url":"https://www.theartnewspaper.com/information/contact","live":true,"cost":"Free","self":"Email/pitch required","effort":"Medium","audience":"50,000+ readership, including collectors, museum directors, and art professionals (The Art Newspaper)","geo":"Global","bestfor":"press","cadence":"one-off post","notes":"No automated web form for submissions; all press releases and news tips must be pitched via email to the editorial team. Listing in the exhibition section typically follows editorial selection or paid advertising (The Art Newspaper).","howto":"","src":"https://www.theartnewspaper.com/information/advertise","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"the art newspaper"],"free":true,"instant":false,"us":"theartnewspaper"},{"name":"Zeffy","ws":"Fundraising/Grants/Donor","what":"A zero-fee fundraising platform for nonprofits that covers all processing fees.","url":"https://www.zeffy.com/en-US/register/method-choice/donation","live":true,"cost":"Free (Zeffy Pricing)","self":"Account required","effort":"Medium","audience":"Over 100,000 nonprofits (Zeffy)","geo":"US national","bestfor":"donor","cadence":"always-on","notes":"100% free for nonprofits; Zeffy covers all transaction and credit card fees by asking donors for an optional tip (Zeffy).","howto":"","src":"https://www.zeffy.com/home/free-online-fundraising-platform","date":"2026-06-12","fs":0,"ss":1,"es":1,"sk":[0,1,1,"zeffy"],"free":true,"instant":false,"us":"zeffy"},{"name":"Florida Division of Arts and Culture (formerly Division of Cultural Affairs)","ws":"Fundraising/Grants/Donor","what":"The state agency responsible for cultural planning and the distribution of state and federal funds for arts and culture in Florida.","url":"https://dosgrants.com/","live":true,"cost":"Free","self":"Account required","effort":"High","audience":"Florida-wide arts and cultural organizations, artists, and public entities. Reach includes thousands of Florida-based nonprofits.","geo":"US region/state (Florida)","bestfor":"grant","cadence":"recurring roundup","notes":"Applications must be submitted through the DOS Grants portal. Organizations must be Florida-based nonprofits or public entities in \"active\" status on Sunbiz. Requires a UEI number and a Florida Substitute W-9. Deadlines are typically in early July.","howto":"","src":"","date":"2026-06-12","fs":0,"ss":1,"es":2,"sk":[0,1,2,"florida division of arts and culture (formerly division of cultural affairs)"],"free":true,"instant":false,"us":"floridadivisionofartsandculture"},{"name":"Google Ad Grants (Google for Nonprofits)","ws":"Paid-Ads Channel","what":"A program providing nonprofits with up to $10,000 USD per month in in-kind advertising to appear on Google Search results.","url":"https://www.google.com/nonprofits/account/signup","live":true,"cost":"Free ($10,000/mo in-kind grant)","self":"Account required","effort":"High","audience":"Billions of Google Search users (global estimate)","geo":"US national","bestfor":"grant, donor, press, open call","cadence":"always-on","notes":"Requires 501(c)(3) status and verification via Goodstack/TechSoup. Organizations must maintain a 5% click-through rate (CTR) and follow specific policy requirements to keep the grant. Not available for hospitals, schools, or government entities.","howto":"","src":"","date":"2026-06-12","fs":0,"ss":1,"es":2,"sk":[0,1,2,"google ad grants (google for nonprofits)"],"free":true,"instant":false,"us":"googleadgrants"},{"name":"Grants.gov","ws":"Fundraising/Grants/Donor","what":"The official centralized storefront for all federal grant-making agencies, allowing organizations to find and apply for federal funding opportunities.","url":"https://apply07.grants.gov/apply/register.faces?INITIAL_LOAD=true","live":true,"cost":"Free","self":"Account required","effort":"High","audience":"1,900+ active federal grant opportunities from 26 agencies, reaching all eligible US nonprofit organizations.","geo":"US national","bestfor":"grant","cadence":"always-on","notes":"Registration is free but requires an active SAM.gov registration (Unique Entity Identifier/UEI), which can take weeks or months to process and requires annual renewal. SAM.gov registration may also require a notarized letter for the entity administrator.","howto":"","src":"https://www.grants.gov/register","date":"2026-06-12","fs":0,"ss":1,"es":2,"sk":[0,1,2,"grants.gov"],"free":true,"instant":false,"us":"grantsgov"},{"name":"National Endowment for the Arts (NEA)","ws":"Fundraising/Grants/Donor","what":"Principal grant category (Grants for Arts Projects) providing project-based funding for arts organizations across various disciplines.","url":"https://www.grants.gov/search-results-detail/362192","live":true,"cost":"Free (Requires 1:1 non-federal match)","self":"Account required","effort":"High","audience":"US National (approx. 2,000 awards per year, $65M total program funding) reaching communities across all 50 states, DC, and US jurisdictions.","geo":"US national","bestfor":"grant","cadence":"recurring roundup","notes":"Requires 1:1 non-federal cost share (cash or in-kind); requires 5-year history of arts programming; requires minimum $20,000 in operating expenses in the most recent fiscal year; requires registration in SAM.gov and Grants.gov (can take weeks). Two-part application process (Grants.gov then NEA Applicant Portal).","howto":"","src":"https://www.arts.gov/grants/grants-for-arts-projects","date":"2026-06-12","fs":0,"ss":1,"es":2,"sk":[0,1,2,"national endowment for the arts (nea)"],"free":true,"instant":false,"us":"nationalendowmentforthearts"},{"name":"Art Market Magazine","ws":"Media/PR Amplifier","what":"International contemporary fine-art magazine; promotes exhibitions/open calls as paid PR announcements and editorial features.","url":"https://artmarketmag.com/submit-art-news/","live":true,"cost":"$80 per PR announcement / website feature","self":"Instant web form","effort":"Low","audience":"Global audience of artists and collectors reading Art Market Magazine","geo":"Israel / Global","bestfor":"press, exhibition, open call","cadence":"one-off post","notes":"Treated as a paid PR/editorial announcement (not a submission system). You can include external links to your submission page. Upload up to 15 images + logo. Good for amplification, not a primary listing channel.","howto":"Go to 'Submit Your Art News' → fill the form (name, PR announcement, exhibition title/dates, PR text with your external links) → upload images/logo → pay the $80 fee → submit for publication.","src":"https://artmarketmag.com/submit-art-news/","date":"2026-06-25","fs":1,"ss":0,"es":0,"sk":[1,0,0,"art market magazine"],"free":false,"instant":true,"us":"artmarketmagazine"},{"name":"Artwork Archive","ws":"Open-Call Listing","what":"Lets organizations POST a standalone open-call LISTING that links out to your own submission URL — no requirement to run submissions on their platform.","url":"https://www.artworkarchive.com/call-for-entry/new","live":true,"cost":"$25 (Basic listing) / $45 (Featured listing)","self":"Instant web form","effort":"Low","audience":"Artists browsing Artwork Archive's Call for Entry discovery feed","geo":"US / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"TEAM DECISION (Kirsten, Jun 2026): we are going the PAID managed-submission route on Artwork Archive — HOLD on posting a standalone listing for now. (Standalone Listing = $25 basic / $45 featured links to your URL; managed submissions = paid Org plan + $2.50/app.) Don't double-post here while the paid setup is in progress.","howto":"Go to 'New Call for Entry' → choose the standalone Listing ($25 basic / $45 featured) → enter details and your external submission URL (skip their managed-submission option).","src":"https://www.artworkarchive.com/call-for-entry/new","date":"2026-06-12","fs":1,"ss":0,"es":0,"sk":[1,0,0,"artwork archive"],"free":false,"instant":true,"us":"artworkarchive"},{"name":"ArtConnect","ws":"Open-Call Listing","what":"Professional art network where organizations POST open calls; you can direct artists to your own external submission URL.","url":"https://www.artconnect.com/opportunities/new","live":true,"cost":"$99 per opportunity, or $20/mo unlimited (Premium)","self":"Account required","effort":"Low","audience":"Tens of thousands of professional artists worldwide ArtConnect","geo":"Global","bestfor":"open call, exhibition, grant","cadence":"always-on","notes":"Verified org-perspective: you can list your own call and point artists to your external submission page in the description/links. Their 'Apply' button defaults to an internal flow, so make your external URL prominent. $99/post or $20/mo unlimited.","howto":"Create an account → 'Post an Opportunity' → enter your call details and put your external submission URL prominently in the description/links ($99/post or $20/mo unlimited).","src":"https://www.artconnect.com/memberships/organizations","date":"2026-06-12","fs":1,"ss":1,"es":0,"sk":[1,1,0,"artconnect"],"free":false,"instant":false,"us":"artconnect"},{"name":"ArtShow.com","ws":"Open-Call Listing","what":"Service that promotes juried art shows and competitions to a global artist audience via paid listings.","url":"https://artshow.com/juriedshows/juriedform.aspx","live":true,"cost":"$45 (Basic, runs until deadline); +$20 image, +$45 featured, +$50 homepage blurb","self":"Approval/review","effort":"Low","audience":"Global artist audience browsing ArtShow.com juried-shows","geo":"US / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"No account needed. The form has dedicated Website + Prospectus fields so artists go to YOUR site. Listings are NOT instant (staff post manually) and can't be self-edited after submitting.","howto":"Open the juried-shows submission form → pick listing options (Basic $45) → enter contact info + call details, deadline, and your Website/Prospectus links → Continue to Payment → staff reviews and publishes.","src":"https://artshow.com/juriedshows/juriedform.aspx","date":"2026-06-18","fs":1,"ss":1,"es":0,"sk":[1,1,0,"artshow.com"],"free":false,"instant":false,"us":"artshowcom"},{"name":"Call for Entries (C4E)","ws":"Open-Call Listing","what":"Searchable directory of art/photo competitions and juried exhibitions; organizations buy listings to reach the public.","url":"https://www.callforentries.com/compare.php","live":true,"cost":"Free tier = members-only (not public); Public: $69/30d or $130/60d (Standard), $169/30d (Featured)","self":"Account required","effort":"Low","audience":"C4E directory visitors (public listings) / logged-in members (free tier)","geo":"US / Global","bestfor":"open call, exhibition","cadence":"one-off post","notes":"Gotcha: the FREE listing is visible only to logged-in C4E members — you need a PAID tier for public visibility. Listings can use an external 'Apply' link to your own submission system.","howto":"Go to the Compare/pricing page → pick a tier (Free / Standard / Featured) → 'Order Now' → create or log into an organization account → fill the form with call details, deadline and your external link → pay (for paid tiers) → publishes.","src":"https://www.callforentries.com/compare.php","date":"2026-06-18","fs":1,"ss":1,"es":0,"sk":[1,1,0,"call for entries (c4e)"],"free":false,"instant":false,"us":"callforentries"},{"name":"Hyperallergic","ws":"Media/PR Amplifier","what":"Online arts publication featuring news, reviews, and a monthly opportunities roundup for artists and creatives.","url":"https://hyperallergic.com/advertise/","live":true,"cost":"confirm","self":"Manual review/approval","effort":"Low","audience":"1 million+ unique visitors per month (Hyperallergic)","geo":"Global","bestfor":"open call | grant | press","cadence":"recurring roundup","notes":"Does not offer a free self-service listing portal; opportunity features and classifieds are directed to the advertising department via a contact form or Nectar Ads. Editorial tips and announcements can be emailed to tips@hyperallergic.com.","howto":"","src":"https://hyperallergic.com/advertise/","date":"2026-06-12","fs":1,"ss":1,"es":0,"sk":[1,1,0,"hyperallergic"],"free":false,"instant":false,"us":"hyperallergic"},{"name":"New American Paintings","ws":"Media/PR Amplifier","what":"Juried showcase/periodical for emerging painters; potential PR/amplification partner, not a submission host.","url":"https://newamericanpaintings.com/contact-us","live":true,"cost":"confirm","self":"Email/pitch required","effort":"Low","audience":"Approx. 5,000+ artist reviews annually with a global subscriber base (from site content/context)","geo":"US national","bestfor":"press, open call","cadence":"one-off post","notes":"New American Paintings is primarily a self-contained juried competition; however, they list a specific contact for advertising inquiries (Liz Morlock) on their Contact page, which is the standard route for an organization looking to reach their audience or propose a collaboration. Direct 'post a call' self-service for external organizations is not found.","howto":"","src":"https://newamericanpaintings.com/contact-us","date":"2026-06-12","fs":1,"ss":1,"es":0,"sk":[1,1,0,"new american paintings"],"free":false,"instant":false,"us":"newamericanpaintings"},{"name":"NYFA Classifieds / Opportunities","ws":"Open-Call Listing","what":"High-reach NYFA opportunity board where organizations POST open calls; listings link out to your own submission URL.","url":"https://www.nyfa.org/sign-up/","live":true,"cost":"$95 (2wk) / $175 (4wk) / $315 (8wk); nonprofit discount available","self":"Account required","effort":"Low","audience":"11M+ annual page views, 716K+ arts candidates, and 42K+ newsletter subscribers (NYFA Create Listing)","geo":"US national","bestfor":"open call, exhibition, grant, donor, press","cadence":"one-off post","notes":"Verified org-perspective: posts link out to YOUR submission page — no lock-in. Small nonprofits (budget ≤ $600k) can request discounted pricing. Strong US/NY reach.","howto":"Sign up → create a paid classified listing ($95–$315 by duration; nonprofit discount on request) → enter call details + your external submission link.","src":"https://www.nyfa.org/create-listing/","date":"2026-06-12","fs":1,"ss":1,"es":0,"sk":[1,1,0,"nyfa classifieds / opportunities"],"free":false,"instant":false,"us":"nyfaclassifiedsopportunities"},{"name":"Americans for the Arts","ws":"Partner Org/Council","what":"National job and internship board for the arts sector.","url":"https://jobbank.artsusa.org/employer-offers","live":true,"cost":"$265 (60-Day Basic Non-Member), $399 (60-Day Premium Non-Member), $25 (30-Day Internship)","self":"Account required","effort":"Medium","audience":"Arts professionals and organizations nationwide (estimate based on leading national arts advocacy role)","geo":"US national","bestfor":"open call","cadence":"one-off post","notes":"Members get discounted rates ($155 Basic, $239 Premium). Requires account creation to post.","howto":"Create an employer/org account on the ARTSU job bank → post your opportunity → link to your own submission page.","src":"https://jobbank.artsusa.org/employer-offers","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"americans for the arts"],"free":false,"instant":false,"us":"americansforthearts"},{"name":"Arts to Hearts Project","ws":"Media/PR Amplifier","what":"A global media and publishing platform for women artists that curates and publishes open calls and opportunities. (Arts to Hearts Project)","url":"https://artstoheartsproject.com/contact/","live":true,"cost":"confirm (Arts to Hearts Project)","self":"Email/pitch required (Arts to Hearts Project)","effort":"Medium (Arts to Hearts Project)","audience":"160,000+ women creatives worldwide (from homepage) (Arts to Hearts Project)","geo":"Global (Arts to Hearts Project)","bestfor":"open call, exhibition, press (Arts to Hearts Project)","cadence":"recurring roundup (Arts to Hearts Project)","notes":"Submissions for curated roundups are selected from a 'pool of submissions' and editorial research; organizers should contact via the contact page for partnerships or proposals (Arts to Hearts Project).","howto":"","src":"https://artstoheartsproject.com/contact/","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"arts to hearts project"],"free":false,"instant":false,"us":"artstoheartsproject"},{"name":"Booooooom Studio","ws":"Media/PR Amplifier","what":"The partnership and advertising arm of Booooooom, handling inquiries from cultural institutions and brands looking to reach a large creative audience through sponsored content, awards, and ads. (Booooooom Studio)","url":"https://studio.booooooom.com/","live":true,"cost":"confirm","self":"Email/pitch required","effort":"Medium","audience":"2M+ monthly visitors, global creative audience (Booooooom Studio)","geo":"Global (Booooooom Studio)","bestfor":"press, open call, exhibition","cadence":"one-off post","notes":"Primary intake for institutions and brands; guaranteed placement or reach typically requires a paid partnership or advertising agreement. Individual artist submissions are handled via a separate member-only portal. (Booooooom Studio)","howto":"","src":"https://studio.booooooom.com/","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"booooooom studio"],"free":false,"instant":false,"us":"booooooomstudio"},{"name":"Create! Magazine","ws":"Media/PR Amplifier","what":"Independent contemporary art magazine and platform that features artists, open calls, and interviews through print, digital, and social media. (Create! Magazine About)","url":"https://www.createmagazine.co/contact","live":true,"cost":"confirm","self":"Email/pitch required","effort":"Medium","audience":"200,000+ global readers and followers (Create! Magazine)","geo":"Global","bestfor":"open call | exhibition | press","cadence":"one-off post","notes":"No automated portal for outside organizers to post calls; requires manual partnership inquiry or pitching via email to alicia@createmagazine.com or info@createmagazine.com. (Create! Magazine Contact)","howto":"","src":"https://www.createmagazine.co/contact","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"create! magazine"],"free":false,"instant":false,"us":"createmagazine"},{"name":"e-flux","ws":"Media/PR Amplifier","what":"A leading international publishing and distribution platform for contemporary art announcements and press releases.","url":"https://www.e-flux.com/contact","live":true,"cost":"confirm","self":"Email/pitch required","effort":"Medium","audience":"90,000+ art professionals globally (Nearby Café)","geo":"Global","bestfor":"press, exhibition, open call, grant, education","cadence":"one-off post","notes":"Rates are not publicly listed and require contacting the e-flux team for a quote; submissions are manually reviewed (e-flux About).","howto":"","src":"https://www.e-flux.com/about","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"e-flux"],"free":false,"instant":false,"us":"eflux"},{"name":"eReleases CauseWire","ws":"Media/PR Amplifier","what":"A specialized press release distribution service for nonprofit organizations, providing access to the PR Newswire network and targeted journalist outreach at discounted rates.","url":"https://www.ereleases.com/causewire/","live":true,"cost":"$399 base (Buzz Builder) with 30% first-timer discount; qualify for specific nonprofit rates via form (eReleases).","self":"Account required / Manual review/approval","effort":"Medium","audience":"1.7 million+ journalists and influencers, plus national PR Newswire distribution reaching 100+ news sites (eReleases).","geo":"US national","bestfor":"press","cadence":"one-off post","notes":"Nonprofits must fill out a qualification form to access discounted rates. Every release undergoes manual editorial review. Pricing is per-release with no membership fees (eReleases).","howto":"","src":"https://www.ereleases.com/causewire/","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"ereleases causewire"],"free":false,"instant":false,"us":"ereleasescausewire"},{"name":"GoFundMe Pro (formerly Classy)","ws":"Fundraising/Grants/Donor","what":"An enterprise fundraising platform for nonprofits that provides tools for donation forms, peer-to-peer campaigns, event registration, and auctions, leveraging the reach of the GoFundMe donor community.","url":"https://pro.gofundme.com/c/demo/","live":true,"cost":"confirm","self":"Manual review/approval","effort":"Medium","audience":"~200 million donors (GoFundMe Pro)","geo":"US national","bestfor":"donor","cadence":"always-on","notes":"Formerly Classy; now integrated with GoFundMe. Specifically serves US-based 501(c)(3) nonprofits. Pricing is custom and requires contacting their team for a demo and assisted onboarding. Nonprofits can also \"claim\" their existing GoFundMe page at gofundme.com/charity/claim/search.","howto":"","src":"https://www.gofundme.com/charity/claim/search","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"gofundme pro (formerly classy)"],"free":false,"instant":false,"us":"gofundmepro"},{"name":"GrantStation","ws":"Fundraising/Grants/Donor","what":"An online grant research platform providing access to searchable databases of private, federal, and international grantmakers, along with strategy tools and educational resources (GrantStation).","url":"https://grantstation.com/checkout/account/98454/6?product_id=2769952","live":true,"cost":"$199/yr or $299/2yrs","self":"Account required","effort":"Medium","audience":"~20,000+ member organizations (est. based on YouTube), serving nonprofits in the US, Canada, and internationally.","geo":"Global","bestfor":"grant","cadence":"always-on","notes":"Requires paid membership for full database access. Offers a free weekly newsletter (Insider). Discounts frequently available via TechSoup or seasonal promotions ($119-$150) (Grantsights).","howto":"","src":"https://grantstation.com/product/grantstation-membership","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"grantstation"],"free":false,"instant":false,"us":"grantstation"},{"name":"LensCulture","ws":"Media/PR Amplifier","what":"Global photography platform/magazine; promote your photo open call via their advertising/media options (not a submission host).","url":"https://www.lensculture.com/advertising","live":true,"cost":"confirm (request media kit for pricing)","self":"Email/pitch required","effort":"Medium","audience":"3M+ monthly reach across platforms, 700,000+ email subscribers, 1.1M Instagram followers (LensCulture Advertising).","geo":"Global","bestfor":"open call, exhibition, grant, press","cadence":"one-off post","notes":"Promotional/PR channel for photo audiences. Request media kit for pricing. Not a submission platform — use for amplification only.","howto":"","src":"https://www.lensculture.com/advertising","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"lensculture"],"free":false,"instant":false,"us":"lensculture"},{"name":"Network for Good (Bonterra Nonprofit Hub)","ws":"Fundraising/Grants/Donor","what":"A donor management and fundraising platform providing CRM tools, online donation pages, and grant-matching resources for nonprofits Bonterra, Network for Good","url":"https://connect.bonterra.network/","live":true,"cost":"Starts at ~$200/month (billed annually) + 3%-4.75% transaction fees Zeffy, Merchant Alternatives","self":"Account required","effort":"Medium","audience":"Small-to-mid nonprofits; platform serves over 1,300+ organizations Zeffy","geo":"US national","bestfor":"donor, grant","cadence":"always-on","notes":"Now part of Bonterra; core fundraising software requires a paid subscription and often a demo, though a free 'Nonprofit Hub' profile is available for basic donor data and grant matching Bonterra, Zeffy","howto":"","src":"https://www.zeffy.com/blog/network-for-good-reviews","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"network for good (bonterra nonprofit hub)"],"free":false,"instant":false,"us":"networkforgood"},{"name":"Pinterest Ads","ws":"Paid-Ads Channel","what":"Visual advertising platform for promoting pins to reach targeted audiences for brand awareness, traffic, and conversions.","url":"https://ads.pinterest.com/","live":true,"cost":"$0.00–$0.10 per click, $0.00–$2.00 per conversion, or $0.00–$1.50 per 1,000 impressions. (WebFX, 2026)","self":"Account required","effort":"Medium","audience":"631 million monthly active users globally, with approximately 106 million in the US and Canada as of Q1 2026. (Pinterest Q1 2026 Results)","geo":"Global","bestfor":"open call | exhibition | donor | press","cadence":"always-on","notes":"Requires a free Pinterest Business account. Nonprofits can select 'Institution/Nonprofit' during business profile setup. (Charity Digital, Pinterest Help Center)","howto":"","src":"","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"pinterest ads"],"free":false,"instant":false,"us":"pinterestads"},{"name":"Res Artis","ws":"Partner Org/Council","what":"A worldwide network of arts residencies that provides a platform for organizations to list residency programs and post unlimited open calls for artists.","url":"https://resartis.org/join-res-artis-or-update-your-profile/","live":true,"cost":"membership €69 - €700/yr (tiered by organization budget) Res Artis Pricing","self":"Manual review/approval","effort":"Medium","audience":"3,918,039 annual website visitors, 25,000+ newsletter subscribers, and 125,000+ Facebook followers (global artist community) Res Artis Advertising","geo":"Global","bestfor":"open call","cadence":"always-on","notes":"Res Artis is a vetted network; organizations must submit a detailed application including budget files and images to be approved for membership and listing Res Artis Join Form","howto":"Join/update your member profile, then submit your residency/open-call opportunity for manual review and listing.","src":"https://resartis.org/join-res-artis-or-update-your-profile/","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"res artis"],"free":false,"instant":false,"us":"resartis"},{"name":"This Is Colossal","ws":"Media/PR Amplifier","what":"An international platform and digital magazine for contemporary art and visual expression (Colossal).","url":"https://www.thisiscolossal.com/submissions/","live":true,"cost":"confirm","self":"Email/pitch required","effort":"Medium","audience":"1M+ monthly visitors, 200k+ newsletter subscribers, 2.5M+ pageviews (Nectar Ads)","geo":"Global","bestfor":"open call, grant, press, exhibition","cadence":"recurring roundup","notes":"Submissions for the monthly \"Colossal Opportunities\" roundup should be sent to [email protected]; general editorial tips go to [email protected] High volume means they cannot respond to all inquiries (Colossal Submissions).","howto":"","src":"https://www.thisiscolossal.com/submissions/","date":"2026-06-12","fs":1,"ss":1,"es":1,"sk":[1,1,1,"this is colossal"],"free":false,"instant":false,"us":"thisiscolossal"},{"name":"Meta Ads Manager","ws":"Paid-Ads Channel","what":"A comprehensive tool for creating, managing, and tracking advertisements across Meta's platforms (Facebook, Instagram, Messenger).","url":"https://adsmanager.facebook.com/adsmanager/manage/campaigns","live":true,"cost":"$0.20-$0.80 CPC / $2-$8 CPM for nonprofits (Vispaico)","self":"Account required","effort":"High","audience":"Over 3 billion monthly active users globally across Facebook, Instagram, Messenger, and WhatsApp (Meta). For nonprofits, typical CPC is $0.20-$0.80 and CPM is $2-$8 (Vispaico).","geo":"Global","bestfor":"donor, grant, press, open call, exhibition","cadence":"always-on","notes":"Requires a Facebook personal account and a Meta Business Suite account. High learning curve. Nonprofit subsidized rates may apply via specialized programs like Meta for Nonprofits (Benly).","howto":"","src":"https://www.vispaico.com/de/meta-ads-faq/how-much-do-meta-ads-cost-2","date":"2026-06-12","fs":1,"ss":1,"es":2,"sk":[1,1,2,"meta ads manager"],"free":false,"instant":false,"us":"metaadsmanager"}];
+const WSCLASS = {
+  'Open-Call Listing':'OpenCall','Submission Software':'Submission',
+  'Media/PR Amplifier':'Media','Partner Org/Council':'Partner',
+  'Fundraising/Grants/Donor':'Fund','Paid-Ads Channel':'Ads'};
+const costClass = r => r.fs===0?'cost-free':(r.fs===1?'cost-confirm':'cost-paid');
+const effClass = e => 'eff-'+(e||'').trim().split(/[ /]/)[0];
+
+let state={sort:null,dir:1,q:'',ws:'',geo:'',free:false,instant:false};
+
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function actLink(r){
+  if(!r.url||r.url.toLowerCase()==='not found'||!r.live)
+    return '<span style="color:var(--red)">not found / not live</span>';
+  return `<a class="act" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a>`;
+}
+function srcLink(r){return r.src?`<a class="src" href="${esc(r.src)}" target="_blank" rel="noopener">source ↗</a>`:'';}
+
+function defaultSort(a,b){
+  return (a.fs-b.fs)||(a.ss-b.ss)||(a.es-b.es)||a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+}
+function applySort(arr){
+  if(!state.sort){arr.sort(defaultSort);return arr;}
+  const k=state.sort,d=state.dir;
+  arr.sort((a,b)=>{
+    let x=a[k],y=b[k];
+    if(typeof x==='number'&&typeof y==='number') return (x-y)*d;
+    return String(x).toLowerCase().localeCompare(String(y).toLowerCase())*d;
+  });
+  return arr;
+}
+function filtered(){
+  return DATA.filter(r=>{
+    if(state.free && !r.free) return false;
+    if(state.instant && !r.instant) return false;
+    if(state.ws && r.ws!==state.ws) return false;
+    if(state.geo){
+      const g=r.geo.toLowerCase();
+      if(state.geo==='US'&&!(g.includes('us '))&&!g.startsWith('us')&&!g.includes('u.s')&&!g.includes('region')&&!g.includes('state')&&!g.includes('national')) {if(g.includes('global'))return false;}
+      if(state.geo==='Global'&&!g.includes('global')) return false;
+      if(state.geo==='US'&&g.includes('global')&&!g.includes('us')) return false;
+    }
+    if(state.q){
+      const t=(r.name+' '+r.what+' '+r.notes+' '+r.bestfor+' '+r.audience+' '+(r.howto||'')).toLowerCase();
+      if(!t.includes(state.q.toLowerCase())) return false;
+    }
+    return true;
+  });
+}
+function render(){
+  let rows=applySort(filtered());
+  const tb=document.getElementById('tb');
+  tb.innerHTML=rows.map(r=>`<tr>
+    <td class="name">${esc(r.name)}</td>
+    <td><span class="ws ${WSCLASS[r.ws]||''}">${esc(r.ws)}</span></td>
+    <td class="what">${esc(r.what)}</td>
+    <td>${actLink(r)}<br>${srcLink(r)}</td>
+    <td class="cost"><span class="pill ${costClass(r)}">${esc(r.cost)}</span></td>
+    <td class="${r.instant?'self-instant':''}">${r.instant?'⚡ ':''}${esc(r.self)}</td>
+    <td class="howto ${r.howto?'':'empty'}">${r.howto?esc(r.howto):'—'}</td>
+    ${utmCell(r)}
+    <td class="${effClass(r.effort)}">${esc(r.effort)}</td>
+    <td>${esc(r.audience)}</td>
+    <td>${esc(r.geo)}</td>
+    <td>${esc(r.bestfor)}</td>
+    <td>${esc(r.cadence)}</td>
+    <td class="notes">${esc(r.notes)}</td>
+    <td style="white-space:nowrap;color:var(--muted)">${esc(r.date)}</td>
+  </tr>`).join('');
+  document.getElementById('count').textContent=`${rows.length} of ${DATA.length} shown`;
+}
+
+// ---- UTM builder ----
+let utmBase='';        // validated base URL string ('' when empty/invalid)
+let utmCampaign='aor-call';  // campaign slug (typed by user)
+let utmPaid=false;     // medium: false=organic, true=paid
+function normalizeBase(raw){
+  let s=(raw||'').trim();
+  if(!s) return {ok:null, base:''};
+  if(!/^https?:\/\//i.test(s)) s='https://'+s;  // tolerate missing scheme
+  try{ const u=new URL(s); if(!u.hostname.includes('.')) return {ok:false, base:''};
+       return {ok:true, base:u.href, host:u.hostname}; }
+  catch(e){ return {ok:false, base:''}; }
+}
+function slugCampaign(raw){
+  return (raw||'').trim().toLowerCase()
+    .replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
+function buildUtm(r){
+  if(!utmBase) return '';
+  const sep = utmBase.includes('?') ? '&' : '?';
+  const medium = utmPaid ? 'paid' : 'organic';
+  const camp = utmCampaign || 'campaign';
+  const qs = 'utm_source='+encodeURIComponent(r.us)+'&utm_medium='+medium+'&utm_campaign='+encodeURIComponent(camp);
+  return utmBase + sep + qs;
+}
+function utmCell(r){
+  if(!utmBase) return '<td class="utm muted">enter a URL above →</td>';
+  const link=buildUtm(r);
+  return `<td class="utm"><span class="utm-link">${esc(link)}</span>`+
+         `<button class="copybtn" data-utm="${esc(link)}">⧉ Copy</button></td>`;
+}
+function utmPreview(){
+  const prev=document.getElementById('utmPreview');
+  if(!utmBase){ prev.style.display='none'; return; }
+  const sample={us:'PLATFORM'};
+  prev.style.display='block'; prev.textContent=buildUtm(sample);
+}
+function applyUtm(){
+  const input=document.getElementById('utmBase');
+  const status=document.getElementById('utmStatus');
+  const prev=document.getElementById('utmPreview');
+  utmCampaign=slugCampaign(document.getElementById('utmCampaign').value);
+  utmPaid=document.getElementById('utmPaid').checked;
+  const res=normalizeBase(input.value);
+  if(res.ok===null){ utmBase=''; input.classList.remove('bad');
+    status.className='utm-status'; status.textContent='Tip: paste the landing-page URL (https://…) and set a campaign name. The UTM column appears once a valid URL is entered.';
+    prev.style.display='none'; render(); return; }
+  if(res.ok===false){ utmBase=''; input.classList.add('bad');
+    status.className='utm-status bad'; status.textContent="That doesn't look like a valid URL — check for typos (e.g. https://notrealart.com/your-call/).";
+    prev.style.display='none'; render(); return; }
+  utmBase=res.base; input.classList.remove('bad');
+  const medium = utmPaid ? 'paid' : 'organic';
+  const campNote = utmCampaign ? "campaign “"+utmCampaign+"”" : 'no campaign set — add one above';
+  status.className='utm-status ok'; status.textContent='✓ Valid — UTM links generated for all '+DATA.length+' platforms ('+campNote+', medium=“'+medium+'”). Example structure shown:';
+  utmPreview();
+  render();
+}
+
+// shortlists
+function buildShortlists(){
+  // open-call: free, workstream listing/submission/partner, bestfor open call, sorted by self-service
+  let oc=DATA.filter(r=>r.free && ['Open-Call Listing','Partner Org/Council'].includes(r.ws)
+        && r.bestfor.toLowerCase().includes('open call') && r.live && r.url.toLowerCase()!=='not found')
+        .sort((a,b)=>(a.ss-b.ss)||(a.es-b.es)).slice(0,12);
+  document.getElementById('ocChips').innerHTML=oc.map(r=>`
+    <a class="chip" href="${esc(r.url)}" target="_blank" rel="noopener">
+      <div class="n">${esc(r.name)}</div>
+      <div class="d">${esc(r.self)} · ${esc(r.cost)}</div>
+      <div class="tags"><span class="tag free">Free</span>${r.instant?'<span class="tag instant">⚡ Instant</span>':''}</div>
+    </a>`).join('');
+
+  let fund=DATA.filter(r=>r.ws==='Fundraising/Grants/Donor' && r.fs<=1 && r.live)
+        .sort((a,b)=>(a.fs-b.fs)||(a.ss-b.ss)||(a.es-b.es)).slice(0,12);
+  document.getElementById('fundChips').innerHTML=fund.map(r=>`
+    <a class="chip" href="${esc(r.url)}" target="_blank" rel="noopener">
+      <div class="n">${esc(r.name)}</div>
+      <div class="d">${esc(r.bestfor)} · ${esc(r.cost)}</div>
+      <div class="tags">${r.fs===0?'<span class="tag free">Free</span>':'<span class="tag">confirm</span>'}</div>
+    </a>`).join('');
+}
+
+function fallbackCopy(txt,cb){try{const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);cb&&cb();}catch(e){}}
+function csvCell(s){s=String(s==null?'':s);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+function downloadCSV(){
+  const cols=[['name','Name'],['ws','Workstream'],['what','What it is'],['url','Action URL'],
+   ['live','Action URL Live'],['cost','Cost'],['self','Self-service level'],['effort','Effort/time'],
+   ['audience','Audience / reach'],['geo','Geography'],['bestfor','Best for'],['cadence','Cadence fit'],
+   ['notes','Notes / gotchas'],['howto','How to submit a call'],['src','Source URL'],['date','Date verified']];
+  let out=cols.map(c=>c[1]).join(',')+'\n';
+  filtered().forEach(r=>{out+=cols.map(c=>csvCell(r[c[0]])).join(',')+'\n';});
+  const blob=new Blob([out],{type:'text/csv'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='arts_master_resource.csv';a.click();
+}
+
+function initFilters(){
+  const ws=[...new Set(DATA.map(r=>r.ws))];
+  const fws=document.getElementById('fws');
+  ws.forEach(w=>{const o=document.createElement('option');o.value=w;o.textContent=w;fws.appendChild(o);});
+  const fgeo=document.getElementById('fgeo');
+  [['US','US (national / region / state)'],['Global','Global / non-US']].forEach(([v,l])=>{
+    const o=document.createElement('option');o.value=v;o.textContent=l;fgeo.appendChild(o);});
+}
+
+let deckLoaded=false;
+function openDeck(){
+  const m=document.getElementById('deckModal'), f=document.getElementById('deckFrame');
+  m.classList.add('open'); m.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  if(deckLoaded) return;
+  // The published domain sends frame-ancestors 'none' / X-Frame-Options: DENY, so we cannot
+  // frame presentation.html by URL. Fetch its HTML and render via srcdoc (inline, same-origin).
+  fetch('presentation.html')
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+    .then(html=>{ f.setAttribute('srcdoc', html); deckLoaded=true; })
+    .catch(err=>{
+      // Fallback: open the deck in a new tab and close the modal.
+      console.error('Deck load failed:', err);
+      window.open('presentation.html','_blank','noopener');
+      closeDeck();
+    });
+}
+function closeDeck(){
+  const m=document.getElementById('deckModal');
+  m.classList.remove('open'); m.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  initFilters(); buildShortlists(); render();
+  document.getElementById('openDeck').addEventListener('click',openDeck);
+  document.getElementById('openDeck').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openDeck();}});
+  document.getElementById('openDeckLink').addEventListener('click',e=>{e.preventDefault();openDeck();});
+  document.getElementById('closeDeck').addEventListener('click',closeDeck);
+  document.getElementById('deckModal').addEventListener('click',e=>{if(e.target.id==='deckModal')closeDeck();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDeck();});
+  document.getElementById('total').textContent=DATA.length;
+  document.getElementById('vdate').textContent='June 12, 2026';
+  document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;render();});
+  document.getElementById('fws').addEventListener('change',e=>{state.ws=e.target.value;render();});
+  document.getElementById('fgeo').addEventListener('change',e=>{state.geo=e.target.value;render();});
+  document.getElementById('ffree').addEventListener('change',e=>{state.free=e.target.checked;render();});
+  document.getElementById('finstant').addEventListener('change',e=>{state.instant=e.target.checked;render();});
+  document.getElementById('csv').addEventListener('click',downloadCSV);
+  // UTM builder events
+  const utmInput=document.getElementById('utmBase');
+  utmInput.addEventListener('input',applyUtm);
+  document.getElementById('utmCampaign').addEventListener('input',applyUtm);
+  document.getElementById('utmPaid').addEventListener('change',applyUtm);
+  document.getElementById('utmClear').addEventListener('click',()=>{utmInput.value='';document.getElementById('utmCampaign').value='';document.getElementById('utmPaid').checked=false;applyUtm();utmInput.focus();});
+  // Evaluated & excluded modal
+  const exclModal=document.getElementById('exclModal');
+  const openExcl=()=>exclModal.classList.add('open');
+  const closeExcl=()=>exclModal.classList.remove('open');
+  document.getElementById('exclLink').addEventListener('click',openExcl);
+  document.getElementById('exclLink').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openExcl();}});
+  document.getElementById('exclClose').addEventListener('click',closeExcl);
+  exclModal.addEventListener('click',e=>{if(e.target===exclModal)closeExcl();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeExcl();});
+  // delegated copy-button handler for UTM cells
+  document.getElementById('tb').addEventListener('click',e=>{
+    const b=e.target.closest('.copybtn'); if(!b) return;
+    const txt=b.getAttribute('data-utm');
+    const done=()=>{const o=b.textContent;b.textContent='✓ Copied';b.classList.add('copied');setTimeout(()=>{b.textContent=o;b.classList.remove('copied');},1400);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done));}
+    else fallbackCopy(txt,done);
+  });
+  document.getElementById('reset').addEventListener('click',()=>{
+    state={sort:null,dir:1,q:'',ws:'',geo:'',free:false,instant:false};
+    document.getElementById('q').value='';document.getElementById('fws').value='';
+    document.getElementById('fgeo').value='';document.getElementById('ffree').checked=false;
+    document.getElementById('finstant').checked=false;
+    document.querySelectorAll('thead .ar').forEach(a=>a.textContent='');render();
+  });
+  document.querySelectorAll('thead th[data-k]').forEach(th=>{
+    th.addEventListener('click',()=>{
+      const k=th.dataset.k;
+      if(state.sort===k){state.dir*=-1;}else{state.sort=k;state.dir=1;}
+      document.querySelectorAll('thead .ar').forEach(a=>a.textContent='');
+      const ar=th.querySelector('.ar'); if(ar) ar.textContent=state.dir>0?'▲':'▼';
+      render();
+    });
+  });
+});
+</script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>
