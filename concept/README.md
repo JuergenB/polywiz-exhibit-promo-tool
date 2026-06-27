@@ -1,10 +1,13 @@
 # Concept — Design Work (To Be Authored With the User)
 
-> **Status: placeholders.** The [research/](../research/) folder establishes the *why* and *what exists*. This folder will hold the *what we'll build* — and it is **intentionally not written yet.** The user is providing the substance for each section below. These are scaffolds with the questions each doc needs to answer, so the structure is ready when the input arrives. **Do not invent answers here** — fill from the user's input.
+> **Status: mostly placeholders.** The [research/](../research/) folder establishes the *why* and *what exists*. This folder holds the *what we'll build* — and the design docs are **intentionally not written yet.** The exception is the decision register below, which frames the strategic questions that must be answered *before* design.
+
+## ▶ Start here: [00-key-decisions.md](00-key-decisions.md)
+The architectural & strategic decisions that gate everything else — **which app this is built on (PolyWiz campaign type vs. Artwork Archive CRM utility vs. standalone), multi-brand vs. multi-tenant, and internal tool vs. white-label SaaS.** My thinking is documented there with options, tradeoffs, and leans. **The root question is Decision 5: tool or product?** — answering it unblocks the rest. The planned design docs below should not be written until the key decisions (at least Decision 5) are made.
 
 ---
 
-## Planned documents
+## Planned documents *(blocked on [00-key-decisions.md](00-key-decisions.md))*
 
 ### 1. `use-cases.md` — Use cases & scenarios *(awaiting user input)*
 The concrete situations the tool must serve. To capture:

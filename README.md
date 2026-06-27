@@ -27,6 +27,9 @@ This concept was incubated as Idea 011 in the [ideas-inbox](https://github.com/J
 | The situation, the three gaps, the origin story | [research/02-background-and-context.md](research/02-background-and-context.md) |
 | How this relates to PolyWiz, Artwork Archive, PressRanger & the ideas-inbox | [research/03-related-systems.md](research/03-related-systems.md) |
 | The 66 verified places to promote calls + find funding | [research/04-channel-directory.md](research/04-channel-directory.md) |
+| **What PressRanger is** + can we integrate it (no API — CSV only) | [research/05-pressranger-deep-dive.md](research/05-pressranger-deep-dive.md) |
+| **Build our own vs. integrate** — the OSS landscape | [research/06-build-vs-integrate-and-oss-landscape.md](research/06-build-vs-integrate-and-oss-landscape.md) |
+| **The decisions before we design** (host app, multi-brand, white-label) | [concept/00-key-decisions.md](concept/00-key-decisions.md) |
 | What's coming next (use cases, tasks, checklist, integrations) | [concept/README.md](concept/README.md) |
 
 ## Repo layout
