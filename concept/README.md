@@ -20,12 +20,13 @@ Who does what, framed as jobs-to-be-done — not features.
 - [ ] **Scott** (stakeholder): cadence visibility (≥1 release/month), go/no-go.
 - [ ] Each task: trigger → steps → what "done" looks like → which system it touches.
 
-### 3. `press-release-and-pressranger-integration.md` — Press releases + PressRanger integration *(awaiting user input)*
-The design for the two integrations the user flagged specifically.
+### 3. `press-release-and-pressranger-integration.md` — Press releases + PressRanger integration *(awaiting user input — research now done)*
+The design for the two integrations the user flagged specifically. **Grounded by [research/05](../research/05-pressranger-deep-dive.md) + [research/06](../research/06-build-vs-integrate-and-oss-landscape.md):**
 - [ ] **Press-release generation** as a new PolyWiz output format: input (open-call record) → draft (release + artist-email + social) → approval → distribution tiering (owned / EIN ~$149 / PressRanger Gold $399 / eReleases nonprofit).
-- [ ] **PressRanger as a feed:** discovery → export arts-beat contacts → curate into the Airtable *Journalists/Media* registry → pitch radar (HARO-style inbound) → disciplined sending (own ESP for blasts, PressRanger for small/personal pitches).
+- [ ] **PressRanger as a feed — constrained by reality:** there is **no API / Zapier / webhook**; the only data egress is **manual CSV export, tier-capped** (~4,000/mo on our Tier 3). So the integration is a **periodic batch ETL** (export → Airtable import), *not* a live sync. Design accordingly: discovery in PressRanger → CSV → curate into the Airtable *Journalists/Media* registry → our own CRM/sending; use PressRanger's pitch radar for inbound.
+- [ ] **Build-vs-integrate decision captured:** build a **thin CRM on Next.js + Airtable + Claude + n8n** (no forkable OSS exists; no heavyweight CRM needed). PressRanger stays a swappable discovery input. See [research/06](../research/06-build-vs-integrate-and-oss-landscape.md).
 - [ ] The "Ideas archive" linkage the user referenced — how this connects back to the ideas-inbox record and any idea-archive workflow.
-- [ ] Eyes-open guardrails: noisy beats, ~8-emails-per-100 export reality, deliverability.
+- [ ] Eyes-open guardrails: noisy keyword-matched beats, ~8-emails-per-100 export reality, deliverability (transactional provider + DKIM/DMARC, not blasting from PressRanger).
 
 ### 4. `promotion-checklist.md` — The per-exhibition / per-open-call checklist *(awaiting user input + existing draft)*
 The repeatable SOP — the operational heart. A **v1 draft already exists upstream** and should be adapted here:

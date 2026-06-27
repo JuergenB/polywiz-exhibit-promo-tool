@@ -8,6 +8,8 @@ This folder holds the **background research and education** for the PolyWiz Exhi
 2. **[02-background-and-context.md](02-background-and-context.md)** — the people, the two June-2026 triggers, the "own the engine" reframe, how the ideas-inbox incubated this (Idea 011), and what's already decided.
 3. **[03-related-systems.md](03-related-systems.md)** — the systems map: PolyWiz (engine), Artwork Archive (system-of-record), PressRanger (one feed), Zernio (rail), ideas-inbox (origin). Own vs. rent.
 4. **[04-channel-directory.md](04-channel-directory.md)** — guide to the 66-channel verified directory: the five workstreams, the 15 columns, and how the tool uses it.
+5. **[05-pressranger-deep-dive.md](05-pressranger-deep-dive.md)** — PressRanger product teardown (UI, data model, limitations) and the load-bearing integration finding: **no API — CSV-export-only egress.** Informs whether we integrate it or build our own.
+6. **[06-build-vs-integrate-and-oss-landscape.md](06-build-vs-integrate-and-oss-landscape.md)** — the GitHub/open-source landscape and the build-vs-integrate recommendation: **build a thin CRM on Next.js + Airtable + Claude + n8n; keep PressRanger as a swappable discovery feed.**
 
 ## Data & source materials
 
