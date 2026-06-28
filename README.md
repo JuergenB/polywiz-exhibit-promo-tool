@@ -7,6 +7,19 @@
 
 ---
 
+## 🎬 Project presentation
+
+<p>
+  <a href="presentations/exhibit-promo-tool.md">
+    <img src="exports/deck-thumb.png" width="640" alt="The Exhibit Promo Tool — open the deck">
+  </a>
+</p>
+
+A 15-slide deck explaining the project, what we already own, and **the critical decisions before we build** (host app, multi-brand vs. multi-tenant, internal tool vs. white-label SaaS).
+**Source:** [presentations/exhibit-promo-tool.md](presentations/exhibit-promo-tool.md) · **Exports:** [PDF](exports/exhibit-promo-tool.pdf) · [HTML](exports/exhibit-promo-tool.html) (full-screen, arrow keys).
+
+---
+
 ## What this is
 
 A home for designing a tool that does the thing we currently *don't* do well: **promote our open calls and exhibitions so more artists submit** — repeatably, measurably, and the same way every time, instead of "whoever has time."
