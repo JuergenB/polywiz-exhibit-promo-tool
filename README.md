@@ -5,18 +5,15 @@
 **Owner (concept):** Juergen Berkessel (Polymash)
 **Graduated from:** [`ideas-inbox` → Idea 011 "Owned Promotion & PR Engine"](https://github.com/JuergenB/ideas-inbox/tree/main/ideas/011-pressranger-outreach-playbook)
 
----
-
-## 🎬 Project presentation
-
 <p>
-  <a href="presentations/exhibit-promo-tool.md">
-    <img src="exports/deck-thumb.png" width="640" alt="The Exhibit Promo Tool — open the deck">
+  <a href="https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool-light.html">
+    <img src="exports/exhibit-promo-tool-thumb.png" width="820" alt="The Exhibit Promo Tool — click to open full-screen presentation">
   </a>
 </p>
 
-A 15-slide deck explaining the project, what we already own, and **the critical decisions before we build** (host app, multi-brand vs. multi-tenant, internal tool vs. white-label SaaS).
-**Source:** [presentations/exhibit-promo-tool.md](presentations/exhibit-promo-tool.md) · **Exports:** [PDF](exports/exhibit-promo-tool.pdf) · [HTML](exports/exhibit-promo-tool.html) (full-screen, arrow keys).
+**🎬 Open presentation (full-screen, arrow keys):** [light version →](https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool-light.html) · [dark version →](https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool.html)
+**📄 Slide deck (PDF):** [exports/exhibit-promo-tool.pdf](exports/exhibit-promo-tool.pdf) — download for print or offline.
+**📄 Sources & references:** [research/README.md](research/README.md) — per-claim sources + confidence flags in [research/05](research/05-pressranger-deep-dive.md) & [research/06](research/06-build-vs-integrate-and-oss-landscape.md).
 
 ---
 

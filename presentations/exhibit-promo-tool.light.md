@@ -3,52 +3,43 @@ marp: true
 theme: default
 paginate: true
 style: |
-  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Raleway:wght@100;200;300;400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap');
 
   :root {
-    --a: #ff6b1a;
-    --a2: #ff8c4a;
-    --bg: #0c0c0c;
-    --s: #111;
-    --b: #1a1a1a;
-    --m: #777;
-    --t: #e0e0e0;
-    --g: #22c55e;
-    --r: #ef4444;
-    --y: #f5a623;
-    --blue: #0199fe;
-    --body: #b0b0b0;
-    --label: #888;
+    --a: #e85d0c; --a2: #d14e00;
+    --bg: #f8f8f8; --s: #ffffff; --b: #e0e0e0;
+    --m: #999; --t: #1a1a1a;
+    --g: #16a34a; --r: #dc2626; --y: #d97706;
+    --blue: #0177c8; --body: #555; --label: #999;
   }
+
+  * { font-family: 'Inter', 'Outfit', sans-serif; }
 
   section {
-    background-color: #0c0c0c;
-    background-image: radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(255,107,26,0.12) 100%);
-    color: var(--t);
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-    padding: 52px 68px;
-    line-height: 1.5;
+    background-color: #f8f8f8;
+    background-image: radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(0,0,0,0.025) 100%);
+    color: var(--t); font-family: 'Inter', sans-serif; font-weight: 400;
+    padding: 52px 68px; line-height: 1.5;
   }
 
-  h1 { font-family: 'Outfit'; font-weight: 600; font-size: 2.1em; color: var(--t); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 4px; }
-  h2 { font-family: 'Raleway'; font-weight: 300; font-size: 1.15em; color: #aaa; margin: 0 0 18px; }
+  h1 { font-family: 'Outfit'; font-weight: 700; font-size: 2.1em; color: var(--t); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 4px; }
+  h2 { font-family: 'Inter'; font-weight: 300; font-size: 1.15em; color: #777; margin: 0 0 18px; }
   h3 { font-family: 'Outfit'; font-weight: 600; font-size: 0.6em; color: var(--m); text-transform: uppercase; letter-spacing: 0.2em; margin: 0 0 4px; }
-  strong { color: var(--a); font-weight: 400; }
+  strong { color: var(--a); font-weight: 500; }
   em { color: var(--t); font-style: italic; }
 
   section.lead { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
   section.lead h1 { font-size: 2.6em; color: var(--t); }
 
-  section::after { font-family: 'Outfit'; font-size: 0.6em; color: #151515; }
+  section::after { font-family: 'Outfit'; font-size: 0.6em; color: #ddd; }
 
-  section.bg-glow { background-color: #0c0c0c; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(255,107,26,0.20) 100%), radial-gradient(ellipse at 0% 100%, rgba(34,197,94,0.14) 0%, transparent 50%); }
-  section.bg-glow-orange { background-color: #0c0c0c; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(255,107,26,0.22) 100%); }
-  section.bg-glow-green { background-color: #0c0c0c; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(34,197,94,0.18) 100%), radial-gradient(ellipse at 100% 0%, rgba(34,197,94,0.12) 0%, transparent 50%); }
-  section.bg-glow-gold { background-color: #0c0c0c; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(245,166,35,0.18) 100%); }
-  section.bg-dots { background-color: #0c0c0c; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(1,153,254,0.14) 100%), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px); background-size: auto, 24px 24px; }
-  section.bg-grid { background-color: #0c0c0c; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(245,166,35,0.14) 100%), linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: auto, 48px 48px, 48px 48px; }
-  section.bg-hero { background-color: #0c0c0c; background-image: radial-gradient(ellipse at 50% 50%, transparent 20%, rgba(1,153,254,0.25) 100%); }
+  section.bg-glow { background-color: #f8f8f8; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(232,93,12,0.06) 100%), radial-gradient(ellipse at 0% 100%, rgba(22,163,74,0.04) 0%, transparent 50%); }
+  section.bg-glow-orange { background-color: #f8f8f8; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(232,93,12,0.07) 100%); }
+  section.bg-glow-green { background-color: #f8f8f8; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(22,163,74,0.06) 100%), radial-gradient(ellipse at 100% 0%, rgba(22,163,74,0.04) 0%, transparent 50%); }
+  section.bg-glow-gold { background-color: #f8f8f8; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(217,119,6,0.06) 100%); }
+  section.bg-dots { background-color: #f8f8f8; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(1,119,200,0.05) 100%), radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: auto, 24px 24px; }
+  section.bg-grid { background-color: #f8f8f8; background-image: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(217,119,6,0.05) 100%), linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: auto, 48px 48px, 48px 48px; }
+  section.bg-hero { background-color: #f8f8f8; background-image: radial-gradient(ellipse at 50% 50%, transparent 20%, rgba(1,119,200,0.08) 100%); }
 
   header { text-align: right; padding: 0; margin: 0; }
   header img { margin: 0; }
@@ -61,13 +52,14 @@ style: |
   tr:last-child td { border-bottom: none; }
   table, thead, tbody, tr, th, td { background: transparent !important; }
 
-  .row:hover { background: #161616; }
+  .row:hover { background: #f0f0f0; }
   .row { transition: background 0.2s; border-radius: 6px; padding: 0 8px; }
 
   a { color: inherit; }
 header: ''
 footer: ''
 ---
+
 
 <!-- _class: lead bg-hero -->
 <!-- _paginate: false -->
