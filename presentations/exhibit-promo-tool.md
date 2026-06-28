@@ -134,7 +134,7 @@ footer: ''
   </div>
 </div>
 
-<div style="margin-top: 16px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--g); border-radius: 8px; padding: 13px 18px; font-size: 0.76em; color: var(--body); line-height: 1.6;">The evidence it works: the grant campaigns over-performed because we ran <strong>Facebook ads to the landing pages</strong>. Open calls deserve the same treatment — measured, this time. <span style="color:var(--m);">→ research/01-why-promote-open-calls.md</span></div>
+<div style="margin-top: 16px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--g); border-radius: 8px; padding: 13px 18px; font-size: 0.76em; color: var(--body); line-height: 1.6;">The evidence it works: the grant campaigns over-performed because we ran <strong>Facebook ads to the landing pages</strong>. Open calls deserve the same treatment — measured, this time. <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/01-why-promote-open-calls.md" style="color:var(--m);">→ research/01-why-promote-open-calls.md</a></div>
 
 ---
 
@@ -193,7 +193,7 @@ footer: ''
 
 <div style="display: flex; gap: 14px; margin-top: 16px;">
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 9px; padding: 12px 16px; font-size: 0.66em; color: var(--body); line-height: 1.55;"><strong>"Open Call" is already a scaffolded PolyWiz campaign type</strong> — disabled, ~1 hour to enable organic. Press release = a new output format. Paid ads = <a href="https://github.com/JuergenB/polywiz-app/issues/181">polywiz-app#181</a>.</div>
-  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 9px; padding: 12px 16px; font-size: 0.66em; color: var(--body); line-height: 1.55;">Same principle as <a href="https://github.com/JuergenB/ideas-inbox/tree/main/ideas/009-arterial-owned-platform">Idea 009</a>: <strong>own the engine; rent only swappable inputs.</strong> <span style="color:var(--m);">→ research/03-related-systems.md</span></div>
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 9px; padding: 12px 16px; font-size: 0.66em; color: var(--body); line-height: 1.55;">Same principle as <a href="https://github.com/JuergenB/ideas-inbox/tree/main/ideas/009-arterial-owned-platform">Idea 009</a>: <strong>own the engine; rent only swappable inputs.</strong> <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/03-related-systems.md" style="color:var(--m);">→ research/03-related-systems.md</a></div>
 </div>
 
 ---
@@ -229,7 +229,7 @@ footer: ''
   </div>
 </div>
 
-<div style="margin-top: 14px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--a); border-radius: 8px; padding: 12px 18px; font-size: 0.7em; color: var(--body); line-height: 1.55;">Each row carries an action URL, cost, self-service level, effort — and a ready-made <strong>UTM slug</strong> so every promoted link is attributable. <span style="color:var(--m);">→ research/04-channel-directory.md · research/arts-master-resource.csv</span></div>
+<div style="margin-top: 14px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--a); border-radius: 8px; padding: 12px 18px; font-size: 0.7em; color: var(--body); line-height: 1.55;">Each row carries an action URL, cost, self-service level, effort — and a ready-made <strong>UTM slug</strong> so every promoted link is attributable. <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/04-channel-directory.md" style="color:var(--m);">→ research/04-channel-directory.md</a> <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/arts-master-resource.csv" style="color:var(--m);">· arts-master-resource.csv</a></div>
 
 ---
 
@@ -252,7 +252,7 @@ footer: ''
   </div>
 </div>
 
-<div style="margin-top: 16px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--g); border-radius: 8px; padding: 13px 18px; font-size: 0.76em; color: var(--body); line-height: 1.6;">Plus noisy keyword-matched beats and patchy emails (one test: <strong>8 of 100</strong> contacts had an email). Use it for <strong>discovery</strong>; own the CRM ourselves. <span style="color:var(--m);">→ research/05-pressranger-deep-dive.md</span></div>
+<div style="margin-top: 16px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--g); border-radius: 8px; padding: 13px 18px; font-size: 0.76em; color: var(--body); line-height: 1.6;">Plus noisy keyword-matched beats and patchy emails (one test: <strong>8 of 100</strong> contacts had an email). Use it for <strong>discovery</strong>; own the CRM ourselves. <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/05-pressranger-deep-dive.md" style="color:var(--m);">→ research/05-pressranger-deep-dive.md</a></div>
 
 ---
 
@@ -275,7 +275,7 @@ footer: ''
   </div>
 </div>
 
-<div style="margin-top: 14px; font-size: 0.72em; color: var(--m); line-height: 1.5; text-align: center;">Revisit <a href="https://github.com/twentyhq/twenty">Twenty</a> only if we outgrow Airtable. <span style="color:var(--m);">→ research/06-build-vs-integrate-and-oss-landscape.md</span></div>
+<div style="margin-top: 14px; font-size: 0.72em; color: var(--m); line-height: 1.5; text-align: center;">Revisit <a href="https://github.com/twentyhq/twenty">Twenty</a> only if we outgrow Airtable. <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/06-build-vs-integrate-and-oss-landscape.md" style="color:var(--m);">→ research/06-build-vs-integrate-and-oss-landscape.md</a></div>
 
 ---
 
@@ -293,7 +293,7 @@ footer: ''
   <div style="font-size: 0.72em; color: var(--m); line-height: 1.55; margin-top: 8px;">Almost every other decision reads "lean X if internal, lean Y if product." Answer this first and the rest resolve.</div>
 </div>
 
-<div style="margin-top: 14px; font-size: 0.72em; color: var(--m); line-height: 1.5; text-align: center;">Full reasoning, options, and tradeoffs → <strong style="color:var(--body); font-weight:600;">concept/00-key-decisions.md</strong></div>
+<div style="margin-top: 14px; font-size: 0.72em; color: var(--m); line-height: 1.5; text-align: center;">Full reasoning, options, and tradeoffs → <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/concept/00-key-decisions.md" style="color:var(--body); font-weight:600;">concept/00-key-decisions.md</a></div>
 
 ---
 
@@ -414,19 +414,19 @@ footer: ''
 <div style="flex: 1;">
 <div style="font-family:'Outfit'; font-weight:600; font-size:0.58em; color:var(--a); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Research (the why & what exists)</div>
 <div style="font-size: 0.64em; color: var(--body); line-height: 1.9;">
-01 · why promote open calls<br>
-02 · background & context<br>
-03 · related systems<br>
-04 · channel directory (+ CSV)<br>
-05 · PressRanger deep-dive<br>
-06 · build-vs-integrate landscape
+<a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/01-why-promote-open-calls.md">01 · why promote open calls</a><br>
+<a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/02-background-and-context.md">02 · background & context</a><br>
+<a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/03-related-systems.md">03 · related systems</a><br>
+<a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/04-channel-directory.md">04 · channel directory</a> <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/arts-master-resource.csv" style="color:var(--m);">(+ CSV)</a><br>
+<a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/05-pressranger-deep-dive.md">05 · PressRanger deep-dive</a><br>
+<a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/06-build-vs-integrate-and-oss-landscape.md">06 · build-vs-integrate landscape</a>
 </div>
 </div>
 
 <div style="flex: 1;">
 <div style="font-family:'Outfit'; font-weight:600; font-size:0.58em; color:var(--y); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Concept (the decisions & design)</div>
 <div style="font-size: 0.64em; color: var(--body); line-height: 1.9;">
-00 · key decisions <span style="color:var(--m);">← start here</span><br>
+<a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/concept/00-key-decisions.md">00 · key decisions</a> <span style="color:var(--m);">← start here</span><br>
 — use cases <span style="color:var(--m);">(to come)</span><br>
 — user-centric tasks <span style="color:var(--m);">(to come)</span><br>
 — PressRanger integration <span style="color:var(--m);">(to come)</span><br>
@@ -446,6 +446,31 @@ footer: ''
 </div>
 
 </div>
+
+---
+
+<!-- _paginate: true -->
+
+# Sources & References
+## Clickable — evidence behind this deck
+
+<div style="font-size: 0.6em; line-height: 1.5;">
+
+**This project (repo docs)** — <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool">github.com/JuergenB/polywiz-exhibit-promo-tool</a> · the [research/](https://github.com/JuergenB/polywiz-exhibit-promo-tool/tree/main/research) folder (01–06) and [concept/00-key-decisions.md](https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/concept/00-key-decisions.md) carry full per-claim sources + confidence flags.
+
+**Parent idea & lineage** — <a href="https://github.com/JuergenB/ideas-inbox/tree/main/ideas/011-pressranger-outreach-playbook">Idea 011 (Owned Promotion & PR Engine)</a> · <a href="https://github.com/JuergenB/ideas-inbox/tree/main/ideas/007-polywiz-paid-ads-engine">007 paid-ads</a> · <a href="https://github.com/JuergenB/ideas-inbox/tree/main/ideas/009-arterial-owned-platform">009 owned platform</a> · <a href="https://github.com/JuergenB/ideas-inbox/tree/main/ideas/004-multi-tenant-curator-platform">004 multi-tenant</a> · <a href="https://github.com/JuergenB/polywiz-app/issues/181">polywiz-app#181 ads epic</a>.
+
+**PressRanger — features, no-API finding, data quality** — <a href="https://pressranger.com/pages/pr-software">pressranger.com/pages/pr-software</a> · <a href="https://pressranger.com/docs">docs (Claude-MCP-only integration)</a> · <a href="https://appsumo.com/products/press-ranger/reviews/">AppSumo reviews (8-of-100 emails; keyword beats)</a>. Full teardown: research/05.
+
+**Wire & software pricing** — <a href="https://www.einpresswire.com/pricing">EIN Presswire ~$149</a> · <a href="https://www.ereleases.com/causewire/">eReleases CauseWire (nonprofit)</a> · <a href="https://www.prezly.com/academy/pr-newswire-pricing">PR Newswire $1,500–3,000</a> · <a href="https://prowly.com/magazine/cision-vs-meltwater/">Cision / Meltwater / Prowly estimates</a>.
+
+**OSS build-vs-integrate** — <a href="https://github.com/twentyhq/twenty">Twenty CRM</a> · <a href="https://github.com/growthenginenowoslawski/coldoutboundskills">coldoutboundskills</a> · <a href="https://github.com/awdeorio/mailmerge">mailmerge</a>. Full landscape + verdicts: research/06.
+
+**Master channel directory (66 verified)** — live build: <a href="https://arterial-art-exhibition-promotion-resources.pplx.app/">arterial-art-exhibition-promotion-resources.pplx.app</a> · data: <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/research/arts-master-resource.csv">research/arts-master-resource.csv</a>.
+
+</div>
+
+<p style="font-size: 0.6em; color: var(--m); margin-top: 12px;">Pricing & capability claims current June 2026 — verify before quoting. AppSumo tier figures flagged low-confidence; re-verify on the live listing. Full URLs, retrieval dates, and high/medium/low confidence flags live in the verification sections of <strong style="color: var(--body); font-weight: 600;">research/05</strong> and <strong style="color: var(--body); font-weight: 600;">research/06</strong>.</p>
 
 ---
 
