@@ -2,6 +2,9 @@
 
 > **Status: mostly placeholders.** The [research/](../research/) folder establishes the *why* and *what exists*. This folder holds the *what we'll build* — and the design docs are **intentionally not written yet.** The exception is the decision register below, which frames the strategic questions that must be answered *before* design.
 
+## 💡 Brainstorm captured: [promotion-playbook-and-tracker.md](promotion-playbook-and-tracker.md)
+The shift from a *read-only reference table* to an *operational playbook + tracker* — "tell it the exhibition → it preps the content per place → you post & tick it off → we can see what got done." Includes the honest feasibility read (assisted + tracked manual submission is easy; auto-filling third-party forms is the trap). This is the plain-English heart of the [stakeholder deck](../presentations/exhibit-promo-tool-stakeholders.md).
+
 ## ▶ Start here: [00-key-decisions.md](00-key-decisions.md)
 The architectural & strategic decisions that gate everything else — **which app this is built on (PolyWiz campaign type vs. Artwork Archive CRM utility vs. standalone), multi-brand vs. multi-tenant, and internal tool vs. white-label SaaS.** My thinking is documented there with options, tradeoffs, and leans. **The root question is Decision 5: tool or product?** — answering it unblocks the rest. The planned design docs below should not be written until the key decisions (at least Decision 5) are made.
 

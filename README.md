@@ -6,13 +6,15 @@
 **Graduated from:** [`ideas-inbox` → Idea 011 "Owned Promotion & PR Engine"](https://github.com/JuergenB/ideas-inbox/tree/main/ideas/011-pressranger-outreach-playbook)
 
 <p>
-  <a href="https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool-light.html">
-    <img src="exports/exhibit-promo-tool-thumb.png" width="820" alt="The Exhibit Promo Tool — click to open full-screen presentation">
+  <a href="https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool-stakeholders-light.html">
+    <img src="exports/exhibit-promo-tool-stakeholders-thumb.png" width="820" alt="Getting More Artists to Apply — plain-English overview, click to open full-screen">
   </a>
 </p>
 
-**🎬 Open presentation (full-screen, arrow keys):** [light version →](https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool-light.html) · [dark version →](https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool.html)
-**📄 Slide deck (PDF):** [exports/exhibit-promo-tool.pdf](exports/exhibit-promo-tool.pdf) — download for print or offline.
+There are **two decks** — same project, two audiences:
+
+**🎬 Plain-English overview** — *for the team & board; start here, no jargon:* [open full-screen →](https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool-stakeholders-light.html) · [dark](https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool-stakeholders.html) · [PDF](exports/exhibit-promo-tool-stakeholders.pdf)
+**🛠 Working deck** — *technical, with the architecture & decisions:* [open full-screen →](https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool-light.html) · [dark](https://juergenb.github.io/polywiz-exhibit-promo-tool/exports/exhibit-promo-tool.html) · [PDF](exports/exhibit-promo-tool.pdf)
 **📄 Sources & references:** [research/README.md](research/README.md) — per-claim sources + confidence flags in [research/05](research/05-pressranger-deep-dive.md) & [research/06](research/06-build-vs-integrate-and-oss-landscape.md).
 
 ---
