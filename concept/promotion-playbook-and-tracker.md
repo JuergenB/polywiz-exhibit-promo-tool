@@ -53,6 +53,17 @@ Not full automation. The tool **prepares** the right text per place, gives **one
 - It **reuses** what we already own (PolyWiz scrape + AI; the CSV; Airtable).
 - It quietly resolves an open design question: the **operational checklist *is* the user-facing surface** for Elise's team — a thin app over Airtable, with PolyWiz doing the scrape-and-prepare behind it. (Touches [Decision 1 (host)](00-key-decisions.md) and [Decision 6 (surface)](00-key-decisions.md): the surface is this tool; the engine behind it is still PolyWiz.)
 
+## Where it should live — standalone (Juergen, 2026-06-30)
+
+A key architectural consideration: **PolyWiz was never meant to be art-specific.** It's a general-purpose social-media promotion tool (built for *The Intersect*, potentially other clients) that handles multiple campaign types. Adding an *arts open-call submission checklist* — a registry of arts listing boards, per-board submission recipes, and a posting tracker — is **feature creep** that hardwires arts content into a tool meant to stay generic.
+
+So this checklist/tracker is an argument **to build a self-standing utility — exactly what the Perplexity widget already is today** — rather than a PolyWiz feature. The split:
+
+- **Generic social amplification** of a call (posts/ads) → fine as a **PolyWiz campaign type** (domain-agnostic).
+- **The arts submission checklist/tracker** (this brainstorm) → a **standalone utility** over Airtable that *calls* PolyWiz/shared services for the generic content parts and owns only the arts-specific layer.
+
+This keeps PolyWiz generic, avoids feature creep, and — bonus — makes any future white-label arts product a clean standalone with PolyWiz untouched behind it. Recorded as a consideration under [Decision 1](00-key-decisions.md#decision-1--where-does-the-engine-live--leaning-polywiz).
+
 ## Open questions (for later, not now)
 
 - One playbook for **open calls** first; **submissions/exhibitions** later — same shape?

@@ -279,6 +279,58 @@ footer: ''
 
 ---
 
+<!-- _class: bg-glow -->
+
+### A Concrete First Build
+
+# Potential MVP — The Open-Call Playbook & Tracker
+
+<div style="font-size: 0.8em; color: var(--body); margin-top: 6px; max-width: 920px; line-height: 1.55;">The reference table we built won't get used on its own — people glance at it, then post by hand with no record. Evolve it from a <em>lookup</em> into a <strong>worklist that does the busy-work and logs it</strong>: tell it the exhibition → it preps the content per place → you post & tick off → we can see what got done.</div>
+
+<div style="display: flex; gap: 13px; margin-top: 16px;">
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 15px 17px;">
+    <div style="font-family:'Outfit'; font-weight:600; font-size:0.8em; color:var(--a); margin-bottom:6px;">⭐ Favorites</div>
+    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55;">Star ~10 boards we actually use; persisted in <strong>Airtable</strong> as a permanent filter. Choose once; it sticks.</div>
+  </div>
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 15px 17px;">
+    <div style="font-family:'Outfit'; font-weight:600; font-size:0.8em; color:var(--blue); margin-bottom:6px;">Scrape & prep</div>
+    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55;">Paste the open-call URL → pull the details → AI preps <strong>ready-to-paste content per board</strong>. Reuses PolyWiz's scrape + AI.</div>
+  </div>
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 15px 17px;">
+    <div style="font-family:'Outfit'; font-weight:600; font-size:0.8em; color:var(--g); margin-bottom:6px;">Checklist + log</div>
+    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55;">Tick off each post; timestamp, who, response — an <strong>auditable record</strong> per call. Fixes the "messy, untracked" problem.</div>
+  </div>
+</div>
+
+<div style="margin-top: 14px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--y); border-radius: 8px; padding: 12px 18px; font-size: 0.72em; color: var(--body); line-height: 1.55;"><strong>Honest scope:</strong> assisted + <em>tracked manual</em> submission — it preps, opens the site, and records it. It does <strong>not</strong> auto-fill the boards (no APIs; brittle by nature). <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/concept/promotion-playbook-and-tracker.md" style="color:var(--m);">→ concept/promotion-playbook-and-tracker.md</a></div>
+
+---
+
+<!-- _class: bg-glow-orange -->
+
+### A Consideration
+
+# Keep PolyWiz Generic — Build the Checklist Standalone
+
+<div style="font-size: 0.8em; color: var(--body); margin-top: 6px; max-width: 920px; line-height: 1.55;">PolyWiz was never meant to be art-specific — it's a <strong>general-purpose social tool</strong> (The Intersect + other clients) with multiple campaign types. Baking in a directory of arts listing boards is <strong>feature creep.</strong> So "promote the open call" splits in two:</div>
+
+<div style="display: flex; gap: 16px; margin-top: 16px;">
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-top: 2px solid var(--blue); border-radius: 10px; padding: 16px 20px;">
+    <span class="tag" style="background:#0199fe15; color:var(--blue); border:1px solid #0199fe44;">Generic → PolyWiz</span>
+    <div style="font-family: 'Outfit'; font-weight: 600; font-size: 0.9em; color: var(--t); margin-top: 10px;">Social amplification</div>
+    <div style="font-size: 0.7em; color: var(--body); line-height: 1.6; margin-top: 6px;">Posts & ads about the call. "Make content for a thing with a deadline" is domain-agnostic — fine as a campaign type. Stays usable for any client.</div>
+  </div>
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-top: 2px solid var(--a); border-radius: 10px; padding: 16px 20px;">
+    <span class="tag" style="background:#ff6b1a15; color:var(--a); border:1px solid #ff6b1a33;">Arts-specific → standalone</span>
+    <div style="font-family: 'Outfit'; font-weight: 600; font-size: 0.9em; color: var(--t); margin-top: 10px;">Submission checklist / tracker</div>
+    <div style="font-size: 0.7em; color: var(--body); line-height: 1.6; margin-top: 6px;">Arts listing boards, per-board submission recipes, the posting log. A <strong>self-standing utility</strong> — what the Perplexity app already is today.</div>
+  </div>
+</div>
+
+<div style="margin-top: 14px; font-size: 0.72em; color: var(--m); line-height: 1.5; text-align: center;">The standalone tool <em>calls</em> PolyWiz for the generic parts and owns only the arts layer — keeping PolyWiz generic, and making a future white-label arts product a clean standalone.</div>
+
+---
+
 <!-- _class: bg-grid -->
 
 ### The Decisions Before We Build
@@ -299,27 +351,28 @@ footer: ''
 
 <!-- _class: bg-glow -->
 
-### Decision 1 — Where the Engine Lives
+### Decision 1 — Where It Lives
 
-# PolyWiz "Campaign Type" — Not a New App
+# It Splits in Two (per the consideration above)
 
 <div style="display: flex; gap: 14px; margin-top: 18px;">
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-top: 2px solid var(--g); border-radius: 10px; padding: 16px 18px;">
-    <span class="tag" style="background:#22c55e12; color:var(--g); border:1px solid #22c55e22;">Lean ✓</span>
-    <div style="font-family:'Outfit'; font-weight:600; font-size:0.84em; color:var(--t); margin-top:10px;">PolyWiz campaign type</div>
-    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55; margin-top: 6px;">It already <em>is</em> the engine. "Open Call" is scaffolded; press release = new output format; ads = #181.</div>
+    <span class="tag" style="background:#22c55e12; color:var(--g); border:1px solid #22c55e22;">Lean ✓ · generic</span>
+    <div style="font-family:'Outfit'; font-weight:600; font-size:0.84em; color:var(--t); margin-top:10px;">Social amplification → PolyWiz</div>
+    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55; margin-top: 6px;">Posts & ads for the call as a generic campaign type. PolyWiz already <em>is</em> this engine; stays usable for The Intersect & other clients.</div>
+  </div>
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-top: 2px solid var(--g); border-radius: 10px; padding: 16px 18px;">
+    <span class="tag" style="background:#22c55e12; color:var(--g); border:1px solid #22c55e22;">Lean ✓ · arts-specific</span>
+    <div style="font-family:'Outfit'; font-weight:600; font-size:0.84em; color:var(--t); margin-top:10px;">Checklist / tracker → standalone</div>
+    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55; margin-top: 6px;">The evolved Perplexity utility over Airtable. Keeps PolyWiz generic; <em>calls</em> it for the generic content parts.</div>
   </div>
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 16px 18px;">
-    <div style="font-family:'Outfit'; font-weight:600; font-size:0.84em; color:var(--m); margin-top:2px;">Artwork Archive utility</div>
-    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55; margin-top: 6px;">Holds the data — but has <strong>no</strong> AI gen, publishing, or ads. Building here = rebuilding PolyWiz. It's a <em>data</em> home.</div>
-  </div>
-  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 16px 18px;">
-    <div style="font-family:'Outfit'; font-weight:600; font-size:0.84em; color:var(--m); margin-top:2px;">Standalone PR app</div>
-    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55; margin-top: 6px;">Cleanest separation — and the right shell <em>if</em> we go white-label. Otherwise it duplicates the engine we own.</div>
+    <div style="font-family:'Outfit'; font-weight:600; font-size:0.84em; color:var(--m); margin-top:2px;">Not Artwork Archive</div>
+    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55; margin-top: 6px;">It's the <em>data</em> home (open-call + submission records), with <strong>no</strong> engine. Don't rebuild PolyWiz inside it.</div>
   </div>
 </div>
 
-<div style="margin-top: 16px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--a); border-radius: 8px; padding: 13px 18px; font-size: 0.74em; color: var(--body); line-height: 1.6;"><strong>Data + CRM layer</strong> → a cleanly-namespaced Airtable (the Artwork Archive base). "Artwork Archive as a CRM utility" is true for the <em>data</em>, not the <em>engine</em>.</div>
+<div style="margin-top: 16px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--a); border-radius: 8px; padding: 13px 18px; font-size: 0.74em; color: var(--body); line-height: 1.6;"><strong>Data layer</strong> → a cleanly-namespaced Airtable (the Artwork Archive base). The split keeps one generic engine, one arts-specific tool, one shared data hub. <a href="https://github.com/JuergenB/polywiz-exhibit-promo-tool/blob/main/concept/00-key-decisions.md" style="color:var(--m);">→ concept/00-key-decisions.md</a></div>
 
 ---
 
@@ -360,7 +413,7 @@ footer: ''
 <table>
 <thead><tr><th>#</th><th>Decision</th><th>Lean</th><th>Gated by</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Engine host</td><td><strong>PolyWiz campaign type</strong></td><td>#5</td></tr>
+<tr><td>1</td><td>Engine / tool host</td><td><strong>Splits: social → PolyWiz · arts checklist → standalone</strong></td><td>#5</td></tr>
 <tr><td>2</td><td>Data / CRM host</td><td><strong>Airtable — Artwork Archive base, namespaced</strong></td><td>#5</td></tr>
 <tr><td>3</td><td>One product or two</td><td><strong>Two layered capabilities</strong></td><td>#5</td></tr>
 <tr><td>4</td><td>Multi-brand vs. multi-tenant</td><td><strong>Multi-brand now, tenant-ready</strong></td><td>#5</td></tr>

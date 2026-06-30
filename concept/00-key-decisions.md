@@ -30,7 +30,27 @@ The user's framing: *Artwork Archive as a CRM utility, PolyWiz as a "Campaign Ty
 | **B. Artwork Archive as a CRM utility** | Build the promo/CRM features into the art-data app | It already holds open-call records + submission/conversion data; it's the Airtable hub | It has **no** AI gen, no publishing, no ads, and only an export-utility UI. Building the engine here = **rebuilding PolyWiz inside it.** It's a *data* home, not an *engine* home |
 | **C. Standalone PR app** | A new app parallel to PolyWiz/Artwork Archive | Cleanest separation; most freedom; the obvious shell *if* white-label is the goal (Decision 5) | Duplicates the engine PolyWiz already is (content gen, approval, scheduling, Zernio publish, ads). Highest build cost, most maintenance surface |
 
-**My lean: A (PolyWiz as a Campaign Type) for the engine — but explicitly as a *capability*, not by absorbing CRM into PolyWiz.** PolyWiz *is* the engine already; B and C both mean rebuilding it. This is settled-ish upstream (Idea 011 grounded it in a real repo review). **What would change it:** if Decision 5 commits to a **near-term white-label product**, option C (standalone) becomes the stronger shell and PolyWiz becomes a service it calls. So **Decision 1 is downstream of Decision 5** — don't finalize it first.
+**My earlier lean: A (PolyWiz as a Campaign Type).** PolyWiz *is* the engine already; rebuilding it (B/C) is wasteful. **But a 2026-06-30 consideration from Juergen refines this — see below — and splits the answer in two.**
+
+### ⚠️ Consideration (Juergen, 2026-06-30): keep PolyWiz generic — the checklist tool is arts-specific
+PolyWiz was **never meant to be art-specific.** It's a **general-purpose social-media promotion tool** built originally for *The Intersect* and potentially other clients, designed to handle a *number of campaign types*. Some per-campaign-type customization is fine — but hardwiring **arts-domain content and workflow** into it is **feature creep that corrupts its general-purpose nature.**
+
+The fix is to recognize that "promote the open call" is **two different things with different natures**:
+
+| | Social amplification | Submission checklist / tracker |
+|---|---|---|
+| **What it is** | Generate social copy + ads about the call, schedule, publish | A directory of *arts listing boards* (EntryThingy, CaFÉ, ArtCallEntry…), per-board "how to submit" recipes, scrape-call→prep-per-board, post-it-and-tick-it-off log |
+| **Is it art-specific?** | **No** — "make posts/ads for a thing with a deadline" is domain-agnostic | **Yes** — it's a registry of art-world submission destinations + an arts posting workflow |
+| **Natural home** | **PolyWiz campaign type** (generic, fine; stays usable for The Intersect / other clients) | **A self-standing utility** — exactly what the Perplexity widget already is today |
+
+So baking the checklist into PolyWiz is the feature creep; building it as a **standalone arts utility** keeps PolyWiz generic. The standalone tool *calls* PolyWiz (or a shared service) for the generic content/social parts and owns **only** the arts-specific layer (board registry, favorites, submission-prep recipes, checklist/log).
+
+**Refined lean — the answer splits:**
+- **Social amplification of a call → PolyWiz campaign type** (generic, optional, brand-agnostic). ✓
+- **The open-call submission checklist / tracker → standalone utility** over Airtable (the evolved widget), to keep PolyWiz generic. ✓
+- They're **complementary, not either/or.** This also makes the future white-label arts product a clean *standalone*, with the generic PolyWiz engine untouched behind it — so it serves Decision 5's optionality too.
+
+**What would change it:** if the checklist stays trivially small, a PolyWiz screen might suffice; but the moment it carries an arts-board registry + submission recipes, it's earned its own home. See [promotion-playbook-and-tracker.md](promotion-playbook-and-tracker.md).
 
 ## Decision 2 — Where does the DATA + CRM layer live? 🟡 Leaning Airtable SoR (Artwork Archive base)
 
@@ -103,7 +123,7 @@ Already answered in [05](../research/05-pressranger-deep-dive.md) / [06](../rese
 
 | # | Decision | Lean | Status | Gated by |
 |---|---|---|---|---|
-| 1 | Engine host | **PolyWiz campaign type** | 🟡 | Decision 5 |
+| 1 | Engine / tool host | **Splits: social amplification → PolyWiz campaign type · arts checklist/tracker → standalone utility (keep PolyWiz generic)** | 🟡 | Decision 5 |
 | 2 | Data/CRM host | **Airtable (Artwork Archive base), cleanly namespaced** | 🟡 | Decision 5 |
 | 3 | One product or two | **Two layered capabilities over shared data** | 🟡 | Decision 5 |
 | 4 | Multi-brand vs. tenant | **Multi-brand now, tenant-*ready*** | 🔴 | Decision 5 |
