@@ -293,17 +293,24 @@ footer: ''
 
 <!-- _class: bg-glow -->
 
-### One Thing to Decide Together
+### A Couple of Things to Talk About
 
-# Just for Us — or for Other Art Groups Too?
+# Two Open Questions — Nothing Decided Yet
 
-<div style="font-size: 0.88em; color: var(--body); margin-top: 10px; max-width: 880px; line-height: 1.65;">There's one bigger question we'll want to talk about — but <strong>not today</strong>:</div>
+<div style="font-size: 0.84em; color: var(--body); margin-top: 8px; max-width: 900px; line-height: 1.6;">As we shape this, there are two questions for the team. Neither needs an answer today — they just help us decide what to build.</div>
 
-<div style="margin-top: 18px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--blue); border-radius: 10px; padding: 20px 26px;">
-  <div style="font-size: 0.92em; color: var(--t); line-height: 1.7;">Do we build this <strong style="color:var(--t); font-weight:600;">just for ourselves</strong> — or also as something we could one day <strong style="color:var(--t); font-weight:600;">offer to other galleries and art organizations</strong>?</div>
+<div style="display: flex; gap: 16px; margin-top: 18px;">
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-top: 2px solid var(--a); border-radius: 10px; padding: 18px 22px;">
+    <div style="font-family: 'Outfit'; font-weight: 600; font-size: 0.88em; color: var(--t); margin-bottom: 8px;">A helper of its own — or part of PolyWiz?</div>
+    <div style="font-size: 0.74em; color: var(--body); line-height: 1.65;">PolyWiz is the tool we already use to create and schedule our posts. Should this open-call helper be a <strong>small, standalone tool</strong> that does just this one job — or should it live <strong>inside PolyWiz</strong>? A separate tool keeps PolyWiz simple and focused; building it in keeps everything in one place.</div>
+  </div>
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-top: 2px solid var(--blue); border-radius: 10px; padding: 18px 22px;">
+    <div style="font-family: 'Outfit'; font-weight: 600; font-size: 0.88em; color: var(--t); margin-bottom: 8px;">Just for us — or for other art groups too?</div>
+    <div style="font-size: 0.74em; color: var(--body); line-height: 1.65;">Do we build this <strong>only for ourselves</strong> — or also as something we could one day <strong>offer other galleries and art organizations</strong>?</div>
+  </div>
 </div>
 
-<div style="margin-top: 18px; font-size: 0.82em; color: var(--m); line-height: 1.6; text-align: center;">We don't have to choose now. Building it well for ourselves keeps that door open either way.</div>
+<div style="margin-top: 16px; font-size: 0.8em; color: var(--m); line-height: 1.6; text-align: center;">We can start small and decide both as we go — building it well keeps every door open.</div>
 
 ---
 
