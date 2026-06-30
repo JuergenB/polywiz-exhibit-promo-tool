@@ -27,7 +27,9 @@ This is an **online playbook for promoting each open call** (and later, each exh
 
 ## The features brainstormed
 
-- **Favorites / shortlist.** Star ~10 open-call places we've actually decided to use, as an *additional, permanent filter*. Permanence lives in **Airtable** (not browser memory). Choose the go-to list once; it sticks.
+- **Favorites / shortlist.** Out of the 60+ sources, bookmark the ones we've actually decided to use, as an *additional, permanent filter*. **Not a hard-coded "ten"** — it might be ten or more; it's just "our go-to subset." Permanence lives in **Airtable** (not browser memory). Choose the list once; it sticks.
+- **Documented process / knowledge repository.** Today the how-to lives in **one teammate's head** — undocumented, no backup, nothing to hand the next person. The tool should also be where that process is **written down and captured** (per-board steps, gotchas), so it's repeatable and not a single point of failure. Continuity matters for a 501(c)(3).
+- **Trackable links.** Each destination gets its own **unique, trackable link** (UTM tagging — but the team thinks of it as "a unique link per place") so we can see **which places actually drove submissions**. The widget already builds these; the tool makes them per-destination and ties them to the log.
 - **Airtable as the repository of sites.** The 66-channel CSV becomes live Airtable rows (it's already import-shaped). Each row already carries the **"how to submit"** steps — the recipe for preparing content.
 - **Scrape + prepare.** A button next to the URL field (today only used for UTM generation) that **scrapes the open-call URL** and **prepares the submission for each place** — i.e. "here's the exhibition, here's the open-call description," tailored to what each site needs.
 - **Checklist + log.** A place to check off each submission ("yes, I did this one"), with a timestamp, who did it, and room to record the response later.
@@ -38,7 +40,7 @@ This is an **online playbook for promoting each open call** (and later, each exh
 | Piece | Verdict |
 |---|---|
 | Rebuild the widget as a real app | **Easy** — it's ~800 lines, self-contained. |
-| Airtable store for sites + **star ~10 favorites** | **Easy** — "favorite" is one checkbox field; persistence is free. |
+| Airtable store for sites + **a favorites shortlist** (ten or more) | **Easy** — "favorite" is one checkbox field; persistence is free. |
 | Paste open-call URL → **scrape** → **prepare tailored content per channel** | **Feasible, mostly already built** — PolyWiz already scrapes open calls (deadline / submission URL / eligibility) and generates copy; the per-channel "how to submit" field is the tailoring input. |
 | **Checklist + log + review** | **Easy** — each (call × channel) is an Airtable row: status, who, when, notes, response. |
 | **Auto-fill / auto-submit the third-party forms** | **The trap.** Most boards have **no API and no automation hook** — manual web forms, many behind logins/CAPTCHAs, all different. Auto-filling arbitrary forms is brittle browser-automation that breaks on any HTML change and often violates ToS. |

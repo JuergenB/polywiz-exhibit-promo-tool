@@ -137,8 +137,8 @@ footer: ''
     <div style="font-size: 0.74em; color: var(--body); line-height: 1.6;">There are <strong>60+ websites</strong> where artists look for open calls — and most are free to post on.</div>
   </div>
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 16px 18px;">
-    <div style="font-family:'Outfit'; font-weight:600; font-size:0.82em; color:var(--y); margin-bottom:6px;">All by hand</div>
-    <div style="font-size: 0.74em; color: var(--body); line-height: 1.6;">Posting is done one at a time, by whoever has a spare minute, a little differently each time.</div>
+    <div style="font-family:'Outfit'; font-weight:600; font-size:0.82em; color:var(--y); margin-bottom:6px;">All in one person's head</div>
+    <div style="font-size: 0.74em; color: var(--body); line-height: 1.6;">Posting is done one at a time — by one teammate who's learned where and how. There's no written process, no backup, and nothing to hand the next person.</div>
   </div>
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 16px 18px;">
     <div style="font-family:'Outfit'; font-weight:600; font-size:0.82em; color:var(--y); margin-bottom:6px;">No record</div>
@@ -203,11 +203,11 @@ footer: ''
 
 # Pick Your Go-To Places Once
 
-<div style="font-size: 0.86em; color: var(--body); margin-top: 8px; max-width: 880px; line-height: 1.6;">There are dozens of places — you don't need all of them. <strong>Star your favorite ten</strong> once, and the helper focuses on those every time. No re-deciding for every call.</div>
+<div style="font-size: 0.86em; color: var(--body); margin-top: 8px; max-width: 880px; line-height: 1.6;">There are dozens of places — you don't need all of them. <strong>Bookmark the ones we actually use</strong> (maybe ten, maybe more), and the helper focuses on those every time. No re-deciding for every call.</div>
 
 <div style="display: flex; gap: 14px; margin-top: 20px;">
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 18px 22px;">
-    <div style="font-family: 'Outfit'; font-weight: 600; font-size: 0.85em; color: var(--t); margin-bottom: 8px;">⭐ Your ten favorites</div>
+    <div style="font-family: 'Outfit'; font-weight: 600; font-size: 0.85em; color: var(--t); margin-bottom: 8px;">⭐ Your shortlist</div>
     <div style="font-size: 0.76em; color: var(--body); line-height: 1.7;">The places you trust and use. The helper shows these first, every single call.</div>
   </div>
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 18px 22px;">
@@ -251,20 +251,20 @@ footer: ''
 
 <div style="display: flex; gap: 14px; margin-top: 20px;">
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 16px 18px;">
+    <div style="font-family:'Outfit'; font-weight:600; font-size:0.82em; color:var(--g); margin-bottom:6px;">A written-down way to do it</div>
+    <div style="font-size: 0.76em; color: var(--body); line-height: 1.6;">The steps live in the tool — so anyone can do it, and it's not stuck in one person's head.</div>
+  </div>
+  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 16px 18px;">
     <div style="font-family:'Outfit'; font-weight:600; font-size:0.82em; color:var(--g); margin-bottom:6px;">A real record</div>
-    <div style="font-size: 0.76em; color: var(--body); line-height: 1.6;">What we posted, where, and when — written down, in one place, for everyone.</div>
+    <div style="font-size: 0.76em; color: var(--body); line-height: 1.6;">Every post ticked off — what we did on each site, who did it, and when. "Yes, done on sites 1, 2, 3."</div>
   </div>
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 16px 18px;">
-    <div style="font-family:'Outfit'; font-weight:600; font-size:0.82em; color:var(--g); margin-bottom:6px;">No more guessing</div>
-    <div style="font-size: 0.76em; color: var(--body); line-height: 1.6;">We can finally tell what we did — and which places actually bring artists in.</div>
-  </div>
-  <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 16px 18px;">
-    <div style="font-family:'Outfit'; font-weight:600; font-size:0.82em; color:var(--g); margin-bottom:6px;">Nothing slips</div>
-    <div style="font-size: 0.76em; color: var(--body); line-height: 1.6;">The checklist makes sure every call gets the full push, every time.</div>
+    <div style="font-family:'Outfit'; font-weight:600; font-size:0.82em; color:var(--g); margin-bottom:6px;">See what actually works</div>
+    <div style="font-size: 0.76em; color: var(--body); line-height: 1.6;">Each place gets its own unique, trackable link — so we can finally tell which ones really send artists our way.</div>
   </div>
 </div>
 
-<div style="margin-top: 18px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--g); border-radius: 8px; padding: 15px 20px; font-size: 0.84em; color: var(--body); line-height: 1.6;">Same effort — but organized, shared, and remembered.</div>
+<div style="margin-top: 18px; background: var(--s); border: 1px solid var(--b); border-left: 2px solid var(--g); border-radius: 8px; padding: 15px 20px; font-size: 0.84em; color: var(--body); line-height: 1.6;">Same effort — but organized, shared, remembered, and no longer dependent on one person.</div>
 
 ---
 

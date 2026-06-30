@@ -290,7 +290,7 @@ footer: ''
 <div style="display: flex; gap: 13px; margin-top: 16px;">
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 15px 17px;">
     <div style="font-family:'Outfit'; font-weight:600; font-size:0.8em; color:var(--a); margin-bottom:6px;">⭐ Favorites</div>
-    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55;">Star ~10 boards we actually use; persisted in <strong>Airtable</strong> as a permanent filter. Choose once; it sticks.</div>
+    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55;">Bookmark the boards we actually use (a shortlist — ten or more); persisted in <strong>Airtable</strong> as a permanent filter. Choose once; it sticks.</div>
   </div>
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 15px 17px;">
     <div style="font-family:'Outfit'; font-weight:600; font-size:0.8em; color:var(--blue); margin-bottom:6px;">Scrape & prep</div>
@@ -298,7 +298,7 @@ footer: ''
   </div>
   <div style="flex: 1; background: var(--s); border: 1px solid var(--b); border-radius: 10px; padding: 15px 17px;">
     <div style="font-family:'Outfit'; font-weight:600; font-size:0.8em; color:var(--g); margin-bottom:6px;">Checklist + log</div>
-    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55;">Tick off each post; timestamp, who, response — an <strong>auditable record</strong> per call. Fixes the "messy, untracked" problem.</div>
+    <div style="font-size: 0.66em; color: var(--body); line-height: 1.55;">Tick off each post; timestamp, who, response — an <strong>auditable record</strong> + the documented how-to (today it's one person's undocumented know-how).</div>
   </div>
 </div>
 
